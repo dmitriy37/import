@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><datamodel datamodelDbId="null">
+  <fieldsEntity entityHeight="160" entityIconified="false" entityId="139447222459501" entityLocationX="43" entityLocationY="650" entityWidth="150" tableName="Imp_ImportVariant"/>
+  <fieldsEntity entityHeight="85" entityIconified="false" entityId="139447291535233" entityLocationX="303" entityLocationY="795" entityWidth="150" tableName="Imp_ImpCatalog"/>
+  <fieldsEntity entityHeight="91" entityIconified="false" entityId="139447218840041" entityLocationX="479" entityLocationY="820" entityWidth="150" tableName="Imp_ExtraCatalog"/>
+  <fieldsEntity entityHeight="57" entityIconified="false" entityId="139447220379926" entityLocationX="711" entityLocationY="522" entityWidth="220" tableName="Imp_ReadFile"/>
+  <fieldsEntity entityHeight="85" entityIconified="false" entityId="139447217294344" entityLocationX="477" entityLocationY="497" entityWidth="150" tableName="Imp_MappingCatalog"/>
+  <fieldsEntity entityHeight="93" entityIconified="false" entityId="139621405295759" entityLocationX="239" entityLocationY="567" entityWidth="150" tableName="Imp_Separator"/>
+</datamodel>

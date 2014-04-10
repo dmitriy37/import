@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><layout defaultCloseOperation="2" name="Form" prefHeight="300px" prefWidth="400px">
+  <widget name="textField" parent="Form" prefHeight="48px" prefWidth="348px" text="ExtraSetting" type="TextFieldDesignInfo">
+    <constraints height="48px" left="24px" top="24px" type="MarginConstraintsDesignInfo" width="348px"/>
+  </widget>
+  <layout type="MarginLayoutDesignInfo"/>
+</layout>

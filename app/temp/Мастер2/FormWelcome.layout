@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><layout defaultCloseOperation="2" name="Form" prefHeight="394px" prefWidth="394px">
+  <widget name="panelExtraSetting" parent="Form" prefHeight="348px" prefWidth="396px" type="PanelDesignInfo">
+    <layout type="MarginLayoutDesignInfo"/>
+    <constraints height="348px" left="0px" top="0px" type="MarginConstraintsDesignInfo" width="396px"/>
+  </widget>
+  <widget actionPerformed="btnNextActionPerformed" name="btnNext" parent="Form" prefHeight="23px" prefWidth="84px" text="Вперед" type="ButtonDesignInfo">
+    <constraints bottom="11px" height="23px" right="106px" type="MarginConstraintsDesignInfo" width="84px"/>
+  </widget>
+  <widget name="panelInputFile" parent="Form" prefHeight="348px" prefWidth="396px" type="PanelDesignInfo">
+    <layout type="MarginLayoutDesignInfo"/>
+    <constraints height="348px" left="0px" top="0px" type="MarginConstraintsDesignInfo" width="396px"/>
+  </widget>
+  <widget actionPerformed="btnCloseActionPerformed" name="btnClose" parent="Form" prefHeight="23px" prefWidth="72px" text="Выход" type="ButtonDesignInfo">
+    <constraints bottom="11px" height="23px" right="22px" type="MarginConstraintsDesignInfo" width="72px"/>
+  </widget>
+  <widget name="panelSetting" parent="Form" prefHeight="348px" prefWidth="396px" type="PanelDesignInfo">
+    <layout type="MarginLayoutDesignInfo"/>
+    <constraints height="348px" left="0px" top="0px" type="MarginConstraintsDesignInfo" width="396px"/>
+  </widget>
+  <widget actionPerformed="btnBackActionPerformed" name="btnBack" parent="Form" prefHeight="23px" prefWidth="77px" text="Назад" type="ButtonDesignInfo">
+    <constraints bottom="11px" height="23px" left="108px" type="MarginConstraintsDesignInfo" width="77px"/>
+  </widget>
+  <widget name="panelImportInfo" parent="Form" prefHeight="348px" prefWidth="396px" type="PanelDesignInfo">
+    <layout type="MarginLayoutDesignInfo"/>
+    <constraints height="348px" left="0px" top="0px" type="MarginConstraintsDesignInfo" width="396px"/>
+  </widget>
+  <widget name="panelWelcome" parent="Form" prefHeight="348px" prefWidth="396px" type="PanelDesignInfo">
+    <layout type="MarginLayoutDesignInfo"/>
+    <constraints height="348px" left="0px" top="0px" type="MarginConstraintsDesignInfo" width="396px"/>
+  </widget>
+  <widget name="label" parent="panelWelcome" prefHeight="36px" prefWidth="108px" text="Welcome" type="LabelDesignInfo">
+    <constraints height="36px" left="60px" top="60px" type="MarginConstraintsDesignInfo" width="108px"/>
+  </widget>
+  <widget actionPerformed="btnImportActionPerformed" name="btnImport" parent="Form" prefHeight="23px" prefWidth="96px" text="Импортировать" type="ButtonDesignInfo">
+    <constraints bottom="11px" height="23px" left="192px" type="MarginConstraintsDesignInfo" width="96px"/>
+  </widget>
+  <layout type="MarginLayoutDesignInfo"/>
+</layout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><datamodel>
+  <parameters>
+    <parameter description="" name="ImpVariant_ID" nullable="true" parameterMode="1" precision="0" scale="0" selectionForm="null" signed="true" size="0" type="2" typeName="NUMERIC"/>
+    <parameter description="" name="mappingID" nullable="true" parameterMode="1" precision="0" scale="0" selectionForm="null" signed="true" size="0" type="2" typeName="NUMERIC"/>
+  </parameters>
+  <parametersEntity entityHeight="200" entityIconified="false" entityLocationX="12" entityLocationY="12" entityWidth="150"/>
+  <entity Name="editMapping" Title="" entityHeight="200" entityIconified="false" entityId="139679265275957" entityLocationX="279" entityLocationY="69" entityWidth="150" queryId="editMapping" tableName="" tableSchemaName=""/>
+  <entity Name="addImport" Title="" entityHeight="200" entityIconified="false" entityId="139679266751991" entityLocationX="247" entityLocationY="301" entityWidth="150" queryId="addImport" tableName="" tableSchemaName=""/>
+  <entity Name="separator" Title="" entityHeight="200" entityIconified="false" entityId="139688553734607" entityLocationX="39" entityLocationY="278" entityWidth="150" queryId="separator" tableName="" tableSchemaName=""/>
+  <entity Name="readFile" Title="" entityHeight="200" entityIconified="false" entityId="139679265111265" entityLocationX="658" entityLocationY="250" entityWidth="150" queryId="readFile" tableName="" tableSchemaName=""/>
+  <entity Name="addImpVariant" Title="" entityHeight="200" entityIconified="false" entityId="139679266558374" entityLocationX="644" entityLocationY="26" entityWidth="150" queryId="addImpVariant" tableName="" tableSchemaName=""/>
+  <relation leftEntityId="-1" leftEntityParameterName="ImpVariant_ID" rightEntityId="139679266558374" rightEntityParameterName="ImpVariant_ID"/>
+  <referenceRelation leftEntityFieldName="ID_CATALOGOFIMP" leftEntityId="139679266558374" rightEntityFieldName="IMP_IMPCATALOG_ID" rightEntityId="139679266751991"/>
+  <referenceRelation leftEntityFieldName="MAPPINGCATALOG_ID" leftEntityId="139679266558374" rightEntityFieldName="IMP_MAPPINGCATALOG_ID" rightEntityId="139679265275957"/>
+</datamodel>

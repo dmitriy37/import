@@ -14,7 +14,7 @@ function ignat() {
 
 
     function buttonActionPerformed(evt) {//GEN-FIRST:event_buttonActionPerformed
-/*        var chooser = new FILE_CHOOSER();
+        var chooser = new FILE_CHOOSER();
         chooser.setFileSelectionMode(selectionMode);
         var result = chooser.showOpenDialog(null);
         if (result == FILE_CHOOSER.APPROVE_OPTION) {
@@ -35,25 +35,31 @@ function ignat() {
       //  while (bf.readLine()) {
       //      alert('+');
       //  }
-      var bq = sc.nextLine();
+ /*     var bq = sc.nextLine();
       var buf = bq.split('|');
       alert(buf[1]);
-    }
-       */
-      
-      var mas = [];
-      var st = [];
-      var st2 = [];
-      var sq = [[[]]];
-      
-      for(var i = 0 ; i < 2 ; i++) {
-          for(var j = 0 ; j < 2 ;j++) {
-              for(q = 0 ; q < 2 ; q++) {
-                  sq[i][[q]] = q;
-              }
-          }
-      }
-   
+    }*/
+    
+                //считать кол-во строк    
+ //       var count = null;
+ //       while (sc.hasNext()) {
+          //  var b = sc.nextLine();
+          //  alert(b);
+ //         sc.nextLine();
+ //           count++;
+ //       }
+                //   alert(count);
+                
+                var count = null;
+       while(sc.hasNext()) {
+           var b = sc.nextLine();
+           var qb = b.split('/');
+            while (qb) {
+                alert('+');
+            }
+       }
+       
+       
     }
     }//GEN-LAST:event_buttonActionPerformed
 

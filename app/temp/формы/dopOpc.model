@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><datamodel>
+  <parameters>
+    <parameter description="" name="Param1" nullable="true" parameterMode="1" precision="0" scale="0" selectionForm="null" signed="true" size="0" type="3" typeName="DECIMAL"/>
+  </parameters>
+  <parametersEntity entityHeight="200" entityIconified="false" entityLocationX="34" entityLocationY="63" entityWidth="150"/>
+  <entity Name="search" Title="" entityHeight="200" entityIconified="false" entityId="139412939140032" entityLocationX="308" entityLocationY="64" entityWidth="150" queryId="search" tableName="" tableSchemaName=""/>
+  <entity Name="addMoreTypeName" Title="" entityHeight="200" entityIconified="false" entityId="139413037018412" entityLocationX="526" entityLocationY="68" entityWidth="150" queryId="addMoreTypeName" tableName="" tableSchemaName=""/>
+  <relation leftEntityId="-1" leftEntityParameterName="Param1" rightEntityId="139412939140032" rightEntityParameterName="Param2"/>
+</datamodel>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><layout defaultCloseOperation="2" name="Form" prefHeight="300px" prefWidth="400px">
+  <widget name="modelGrid" parent="Form" prefHeight="100px" prefWidth="216px" type="DbGridDesignInfo">
+    <column name="column">
+      <controlInfo classHint="DbLabelDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
+      <columnsDisplayField/>
+      <datamodelElement entityId="139690614080740" fieldName="SEPARATOR"/>
+      <columnsDatasource/>
+      <cellsDatasource/>
+      <cellDesignInfo>
+        <rowsKeyField/>
+        <columnsKeyField/>
+        <cellValueField/>
+      </cellDesignInfo>
+      <headerStyle>
+        <nativeFont name="Tahoma" size="11"/>
+      </headerStyle>
+    </column>
+    <rowsColumnsDesignInfo>
+      <rowsDatasource entityId="139690614080740" field="false"/>
+    </rowsColumnsDesignInfo>
+    <treeDesignInfo/>
+    <constraints height="100px" left="84px" top="12px" type="MarginConstraintsDesignInfo" width="216px"/>
+  </widget>
+  <widget actionPerformed="btnAddActionPerformed" name="btnAdd" parent="Form" prefHeight="23px" prefWidth="65px" text="add" type="ButtonDesignInfo">
+    <constraints height="23px" left="72px" top="168px" type="MarginConstraintsDesignInfo" width="65px"/>
+  </widget>
+  <widget actionPerformed="btnDellActionPerformed" name="btnDell" parent="Form" prefHeight="23px" prefWidth="71px" text="dell" type="ButtonDesignInfo">
+    <constraints height="23px" left="168px" top="168px" type="MarginConstraintsDesignInfo" width="71px"/>
+  </widget>
+  <widget name="textSeparate" parent="Form" prefHeight="20px" prefWidth="108px" type="TextFieldDesignInfo">
+    <constraints height="20px" left="84px" top="132px" type="MarginConstraintsDesignInfo" width="108px"/>
+  </widget>
+  <widget actionPerformed="btnExitActionPerformed" name="btnExit" parent="Form" prefHeight="23px" prefWidth="89px" text="Выход" type="ButtonDesignInfo">
+    <constraints bottom="13px" height="23px" right="23px" type="MarginConstraintsDesignInfo" width="89px"/>
+  </widget>
+  <layout type="MarginLayoutDesignInfo"/>
+</layout>

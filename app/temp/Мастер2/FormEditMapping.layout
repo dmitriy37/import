@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><layout defaultCloseOperation="2" name="Form" prefHeight="263px" prefWidth="405px">
+  <widget name="modelGrid" parent="Form" prefHeight="100px" prefWidth="384px" type="DbGridDesignInfo">
+    <treeDesignInfo/>
+    <column name="Пользователь">
+      <controlInfo classHint="DbLabelDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
+      <columnsDisplayField/>
+      <datamodelElement entityId="139447918587370" fieldName="USER_TITLE"/>
+      <columnsDatasource/>
+      <cellsDatasource/>
+      <cellDesignInfo>
+        <rowsKeyField/>
+        <columnsKeyField/>
+        <cellValueField/>
+      </cellDesignInfo>
+      <headerStyle>
+        <nativeFont name="Tahoma" size="11"/>
+      </headerStyle>
+    </column>
+    <column name="Программист">
+      <controlInfo classHint="DbLabelDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
+      <columnsDisplayField/>
+      <datamodelElement entityId="139447918587370" fieldName="CODER_TITLE"/>
+      <columnsDatasource/>
+      <cellsDatasource/>
+      <cellDesignInfo>
+        <rowsKeyField/>
+        <columnsKeyField/>
+        <cellValueField/>
+      </cellDesignInfo>
+      <headerStyle>
+        <nativeFont name="Tahoma" size="11"/>
+      </headerStyle>
+    </column>
+    <rowsColumnsDesignInfo>
+      <rowsDatasource entityId="139447918587370" field="false"/>
+    </rowsColumnsDesignInfo>
+    <constraints height="100px" left="12px" top="12px" type="MarginConstraintsDesignInfo" width="384px"/>
+  </widget>
+  <widget name="textUser" parent="Form" prefHeight="20px" prefWidth="132px" type="TextFieldDesignInfo">
+    <constraints height="20px" left="36px" top="120px" type="MarginConstraintsDesignInfo" width="132px"/>
+  </widget>
+  <widget name="textProg" parent="Form" prefHeight="20px" prefWidth="132px" type="TextFieldDesignInfo">
+    <constraints height="20px" left="240px" top="120px" type="MarginConstraintsDesignInfo" width="132px"/>
+  </widget>
+  <widget actionPerformed="btnUserAddActionPerformed" name="btnUserAdd" parent="Form" prefHeight="23px" prefWidth="65px" text="Add" type="ButtonDesignInfo">
+    <constraints height="23px" left="36px" top="168px" type="MarginConstraintsDesignInfo" width="65px"/>
+  </widget>
+  <widget name="btnUserDel" parent="Form" prefHeight="23px" prefWidth="65px" text="Del" type="ButtonDesignInfo">
+    <constraints bottom="36px" height="23px" left="36px" type="MarginConstraintsDesignInfo" width="65px"/>
+  </widget>
+  <widget actionPerformed="btnCloseActionPerformed" name="btnClose" parent="Form" prefHeight="23px" prefWidth="77px" text="Закрыть" type="ButtonDesignInfo">
+    <constraints bottom="12px" height="23px" right="28px" type="MarginConstraintsDesignInfo" width="77px"/>
+  </widget>
+  <widget actionPerformed="btnRequeryActionPerformed" name="btnRequery" parent="Form" prefHeight="23px" prefWidth="96px" text="Requery" type="ButtonDesignInfo">
+    <constraints height="23px" left="144px" top="168px" type="MarginConstraintsDesignInfo" width="96px"/>
+  </widget>
+  <layout type="MarginLayoutDesignInfo"/>
+</layout>

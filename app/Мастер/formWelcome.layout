@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><layout defaultCloseOperation="2" name="Form" prefHeight="303px" prefWidth="407px">
+  <widget name="panelWelcome" parent="Form" prefHeight="264px" prefWidth="408px" type="PanelDesignInfo">
+    <layout type="MarginLayoutDesignInfo"/>
+    <constraints bottom="39px" left="0px" right="-1px" top="0px" type="MarginConstraintsDesignInfo"/>
+  </widget>
+  <widget name="panelInputFile" parent="Form" prefHeight="264px" prefWidth="408px" type="PanelDesignInfo">
+    <layout type="MarginLayoutDesignInfo"/>
+    <constraints bottom="39px" left="0px" right="-1px" top="0px" type="MarginConstraintsDesignInfo"/>
+  </widget>
+  <widget name="panelSetting" parent="Form" prefHeight="264px" prefWidth="408px" type="PanelDesignInfo">
+    <layout type="MarginLayoutDesignInfo"/>
+    <constraints bottom="39px" left="0px" right="-1px" top="0px" type="MarginConstraintsDesignInfo"/>
+  </widget>
+  <widget name="panelExtraSetting" parent="Form" prefHeight="264px" prefWidth="408px" type="PanelDesignInfo">
+    <layout type="MarginLayoutDesignInfo"/>
+    <constraints bottom="39px" left="0px" right="-1px" top="0px" type="MarginConstraintsDesignInfo"/>
+  </widget>
+  <widget name="panelImportInfo" parent="Form" prefHeight="264px" prefWidth="408px" type="PanelDesignInfo">
+    <layout type="MarginLayoutDesignInfo"/>
+    <constraints bottom="39px" left="0px" right="-1px" top="0px" type="MarginConstraintsDesignInfo"/>
+  </widget>
+  <widget actionPerformed="btnExitActionPerformed" name="btnExit" parent="Form" prefHeight="23px" prefWidth="72px" text="Выход" type="ButtonDesignInfo">
+    <constraints bottom="4px" height="23px" right="11px" type="MarginConstraintsDesignInfo" width="72px"/>
+  </widget>
+  <widget actionPerformed="btnNextActionPerformed" name="btnNext" parent="Form" prefHeight="23px" prefWidth="77px" text="Вперед" type="ButtonDesignInfo">
+    <constraints bottom="4px" height="23px" right="102px" type="MarginConstraintsDesignInfo" width="77px"/>
+  </widget>
+  <widget actionPerformed="btnBackActionPerformed" name="btnBack" parent="Form" prefHeight="23px" prefWidth="72px" text="Назад" type="ButtonDesignInfo">
+    <constraints bottom="4px" height="23px" right="203px" type="MarginConstraintsDesignInfo" width="72px"/>
+  </widget>
+  <layout type="MarginLayoutDesignInfo"/>
+</layout>

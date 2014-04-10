@@ -6,21 +6,24 @@
 function readFileController() {
     var self = this, model = this.model;
     
-    
-    self.read = function(filePath) {
+    self.read = initReader;
+    self.initReader = initReader;
+            
+    function initReader(filePath) {
         var ext = filePath.substring(filePath.lastIndexOf(".") + 1);
-        if (ext == 'xls') {
-            var moduleReadXLS = new readXLS();
-            return moduleReadXLS;
-        }
-        else if (ext == 'xlsx') {
-            var moduleReadXLSX = new readXLSX();
-            return moduleReadXLSX;
-        }
-        else if (ext == 'txt') {
-            var moduleReadTXT = new readTXT();
-            return moduleReadTXT;
-
+        switch (ext) {
+            case('xls') : {
+                    return new readXLS(filePath);
+                    break;
+            }
+            case ('xlsx') : {
+                    return new readXLSX(filePath);
+                    break;
+            }
+            case ('txt') : {
+                    return new readTXT(filePath);
+                    break;
+            }
         }
     };
 

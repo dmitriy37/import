@@ -3,7 +3,7 @@
  * @author Dmitriy
  * @module
  */
-function readXLSX() {
+function readXLSX(aFilePath) {
     var self = this, model = this.model;
 
     var fis = null;

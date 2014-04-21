@@ -5,67 +5,75 @@
 function formSetting() {
     var self = this, model = this.model, form = this;
 
+
+/* ext - расширение файла
+ * sepseparator - разделитель для текстового файла
+ * API - API для файла
+ * workworkFile - для работы с API файла
+ * checkPanel - проверка панели, если переход был сделан с предыдущей панели то true
+ * self.parent - взаимодействие с formWelcome
+ */
+
     var ext = null;
     var separator = null;
-    var stringArray = [];
-    var cellArray = null;
-    var fileController = null;
+    var API = null;
     var workFile = null;
-    var rowLength = null;
-    var count = 0;
-    var checkPanel = false;
-    var stringCount = 0;
+    var checkPanel = null;
+    
+    self.parent = null; 
 
 
 
-    self.toShowFile = function(fPath, fSeparator, checkForm) {
+    /**
+     * функция для отображения содержимого файла
+     * @param {type} fPath - путь файла
+     * @param {type} fSeparator - разделитель для текстового файла
+     * @param {type} checkForm - проверяет форму, если переход сделан с предыдущей формы то true
+     * @returns {undefined}
+     */
+    self.toShowFile = function(fPath, fSeparator, checkForm) {         
         if (checkForm == true) {
-            checkPanel = true;
+            model.params.ImpVariant_ID = null;
             model.readFile.deleteAll();
             ext = fPath.substring(fPath.lastIndexOf(".") + 1);
             model.separator.scrollTo(model.separator.findById(fSeparator));
             separator = model.separator.SEPARATOR;
-            alert(separator);
-            fileController = new readFileController();
-            workFile = fileController.read(fPath);
-            workFile.readFile(fPath);
-            if (ext == 'txt') {
-                var string = workFile.readFirstRow(separator);
-                if (string.length > 1) {
-                    cellArray = string;
-                    stringArray.push(string);
-                }
-                else
-                    cellArray = null;
+            self.parent.separator = separator;          
+            API = new ImportAPI(fPath, separator);
+            workFile = API.initializeFile;
+            workFile.initializeFile;
+            var data = workFile.getData;
+            for (var i in data) {
+                model.readFile.insert(model.readFile.schema.cellNum, data[i].cellNum,
+                        model.readFile.schema.cellData, data[i].cellData);
             }
-            else {
-                cellArray = workFile.readFirstRow();
-                rowLength = workFile.numberOfRows();
-            }
-            for (var i in cellArray) {
-                model.readFile.insert(model.readFile.schema.cellNum, cellArray[i].cellNum,
-                        model.readFile.schema.cellTitle, cellArray[i].cellTitle);
-            }
+            model.readFile.first();
         }
-        model.readFile.first();
-    }
+        model.separator.beforeFirst();
+    };
 
+    /**
+     * функция для скрола файла
+     * @param {type} array - объект с данными из файла либо из новой строки либо из предыдущей
+     * @returns {undefined}
+     */
     function showScrollFile(array) {
+        model.readFile.first();
         if (array.length > model.readFile.length) {
             model.readFile.first();
             for (var i in array) {
                 if (model.readFile.length > i) {
-                    model.readFile.cellTitle = array[i].cellTitle;
+                    model.readFile.cellData = array[i].cellData;
                     model.readFile.next();
                 }
                 else
-                    model.readFile.insert(model.readFile.schema.cellNum, array[i].cellNum + 1, model.readFile.schema.cellTitle, array[i].cellTitle);
+                    model.readFile.insert(model.readFile.schema.cellNum, array[i].cellNum + 1, model.readFile.schema.cellData, array[i].cellData);
             }
         }
         else if (array.length == model.readFile.length) {
             model.readFile.first();
             for (var i in array) {
-                model.readFile.cellTitle = array[i].cellTitle;
+                model.readFile.cellData = array[i].cellData;
                 model.readFile.next();
             }
         }
@@ -73,23 +81,27 @@ function formSetting() {
             model.readFile.first();
             for (var i = 0; i < model.readFile.length; i++) {
                 if (array.length > i) {
-                    model.readFile.cellTitle = array[i].cellTitle;
+                    model.readFile.cellData = array[i].cellData;
                     model.readFile.next();
                 }
                 else {
-                    model.readFile.cellTitle = '';
+                    model.readFile.cellData = '';
                     model.readFile.next();
                 }
             }
         }
     }
+
+    /**
+     * функция отображения варианта сопоставления
+     * @returns {undefined}
+     */
     function toShowVariant() {
         model.readFile.beforeFirst();
         while (model.readFile.next()) {
             model.readFile.mappingId = '';
         }
         model.readFile.first();
-
         model.addImpVariant.last();
         var lastCell = model.addImpVariant.CELLNUMBER;
         model.readFile.last();
@@ -102,11 +114,9 @@ function formSetting() {
             model.addImpVariant.first();
             while (model.readFile.next()) {
                 if (model.readFile.cellNum == model.addImpVariant.CELLNUMBER) {
-
                     model.readFile.mappingId = model.addImpVariant.MAPPINGCATALOG_ID;
                     model.addImpVariant.next();
                 }
-
             }
         }
         else {
@@ -114,18 +124,20 @@ function formSetting() {
             model.addImpVariant.first();
             while (model.readFile.next()) {
                 if (model.readFile.cellNum == model.addImpVariant.CELLNUMBER) {
-
                     model.readFile.mappingId = model.addImpVariant.MAPPINGCATALOG_ID;
                     model.addImpVariant.next();
-
                 }
             }
         }
         model.readFile.first();
     }
 
+    /**
+     * функция создает объект для импорта 
+     * @returns {Array} - возвращяет обхект для импорта
+     */
     self.makeImpObj = function() {
-        var mas = [];
+        var res = [];
         var i = 0;
         model.readFile.beforeFirst();
         while (model.readFile.next()) {
@@ -135,69 +147,105 @@ function formSetting() {
                 var mappingTitle = model.editMapping.CODER_TITLE;
                 var cellNum = model.readFile.cellNum - 1;
                 var isArr = model.readFile.isArray;
-                mas[i] = {mapping: mappingTitle,
-                    cellNumber: cellNum,
-                    isArray: isArr};
+                res[i] = {mapping: mappingTitle,
+                        cellNumber: cellNum,
+                        isArray: isArr};
                 i++;
             }
         }
-        return mas;
+        return res;
     };
 
 
-    function btnDownActionPerformed(evt) {//GEN-FIRST:event_btnDownActionPerformed
-        if (ext == 'txt') {
-            if (count < stringCount) {
-                cellArray = stringArray[count];
-                showScrollFile(cellArray);
-                count++;
-            }
-            else {
-                var string = workFile.getString(separator);
-                if (string.length > 0) {
-                    stringArray.push(string);
-                    stringCount++;
-                    cellArray = string;
-                    showScrollFile(cellArray);
-                }
-            }
-        }
-        else {
-            if (count < rowLength - 1) {
-                count++;
-                cellArray = workFile.scroll(count);
-                showScrollFile(cellArray);
-            }
-        }
-        
-    }//GEN-LAST:event_btnDownActionPerformed
 
     function btnUpActionPerformed(evt) {//GEN-FIRST:event_btnUpActionPerformed
-        if (ext == 'txt') {
-            if (count > 0) {
-                count--;
-                cellArray = stringArray[count];
-                showScrollFile(cellArray);
-            }
+       /*
+        * скролл вверх
+        */
+        var dataObject = workFile.getPrev();
+        if (dataObject) {
+            showScrollFile(dataObject);
         }
-        else {
-            if (count > 0) {
-                count--;
-                cellArray = workFile.scroll(count);
-                showScrollFile(cellArray);
-            }
-        }
-        
     }//GEN-LAST:event_btnUpActionPerformed
 
     function selectImportOnRender(evt) {//GEN-FIRST:event_selectImportOnRender
-        if (checkPanel) {
-            toShowVariant();
-        }
+       /*
+        * отображения типов сопоставления на modelGrid ( не работает )
+        */
+        toShowVariant();
+        self.modelGrid.onMouseClicked();
+    
     }//GEN-LAST:event_selectImportOnRender
 
     function MappingTypeOnRender(evt) {//GEN-FIRST:event_MappingTypeOnRender
-        // TODO Добавьте свой код:
+      
     }//GEN-LAST:event_MappingTypeOnRender
-}
 
+    function modelGridOnRender(evt) {//GEN-FIRST:event_modelGridOnRender
+     
+    }//GEN-LAST:event_modelGridOnRender
+
+    function modelGridMouseClicked(evt) {//GEN-FIRST:event_modelGridMouseClicked
+        
+    }//GEN-LAST:event_modelGridMouseClicked
+
+    function btnDelImpVarActionPerformed(evt) {//GEN-FIRST:event_btnDelImpVarActionPerformed
+      /**
+       * для удаления варианта импорта
+       */
+        if (model.params.ImpVariant_ID) {
+            var msg = confirm('Удалить вариант импорта', 'Внимание');
+            if (msg) {
+                model.addImpVariant.deleteAll();
+                model.addImport.scrollTo(model.addImport.findById(model.params.ImpVariant_ID));
+                model.addImport.deleteRow();
+                model.params.ImpVariant_ID = null;
+                model.save();
+            }
+        }
+        else
+            alert('Не выбран вариант импорта','Внимание');
+    }//GEN-LAST:event_btnDelImpVarActionPerformed
+
+    function btnSaveImpVarActionPerformed(evt) {//GEN-FIRST:event_btnSaveImpVarActionPerformed
+       /**
+        * для сохранения нового варианта импорта ( добавить перезапись текущего варианта )
+        */
+        model.readFile.beforeFirst();
+        while (model.readFile.next()) {
+            if (model.readFile.mappingId) {
+                var checkMapping = true;
+                break;
+            }
+            else
+                checkMapping = false;
+        }
+        if (checkMapping) {
+            var msg = prompt('Введите название варианта импорта','','Внимание');
+            model.addImport.insert(model.addImport.schema.TITLE, msg);
+            model.readFile.beforeFirst();
+            while (model.readFile.next()) {
+                if (model.readFile.mappingId) {
+                    var mapping = model.readFile.mappingId;
+                    model.addImpVariant.insert(model.addImpVariant.schema.CELLNUMBER, model.readFile.cellNum,
+                            model.addImpVariant.schema.MAPPINGCATALOG_ID, mapping,
+                            model.addImpVariant.schema.ID_CATALOGOFIMP, model.addImport.IMP_IMPCATALOG_ID);
+                }
+            }
+            model.readFile.first();
+            model.save();
+        }
+        else
+            alert("Выберите тип сопоставления",'Внимание');
+    }//GEN-LAST:event_btnSaveImpVarActionPerformed
+
+    function btnDownActionPerformed(evt) {//GEN-FIRST:event_btnDownActionPerformed
+        /*
+         * скролл вниз
+         */
+        var dataObject = workFile.getNext();
+        if (dataObject) {
+            showScrollFile(dataObject);
+        }
+    }//GEN-LAST:event_btnDownActionPerformed
+}

@@ -5,12 +5,10 @@
 function formInputFile() {
     var self = this, model = this.model, form = this;
 
-    self.parent = null;
-    var ext = 1;
-  
+    self.parent = null; 
     
+  
     function btnOpenActionPerformed(evt) {//GEN-FIRST:event_btnOpenActionPerformed
-      
         var FILE_CHOOSER = javax.swing.JFileChooser;
         var selectionMode = javax.swing.JFileChooser.FILES_AND_DIRECTORIES;
         self.textFilePath.text = '';
@@ -21,29 +19,20 @@ function formInputFile() {
             var selectedFile = chooser.getSelectedFile();
             var filePath = selectedFile.path;
             self.textFilePath.text = filePath;
+            self.parent.btnNext.enabled = true;
+            self.parent.filePath = self.textFilePath.text;
+            if (self.textFilePath.text.substring(self.textFilePath.text.lastIndexOf(".") + 1) == 'txt')
+                self.separator.editable = true;
+            else
+                self.separator.editable = false;
         }
         else {
             self.textFilePath.text = null;
+            self.parent.btnNext.enabled = false;
+            model.params.separatorID = null;
+            self.separator.editable = false;
         }
-           if (self.textFilePath.text) {
-            self.parent.btnNext.enabled = true;
-            self.parent.filePath = self.textFilePath.text;
-        }
-        else {
-             self.parent.btnNext.enabled = false;      
-        }
-        
-        if(self.textFilePath.text.substring(self.textFilePath.text.lastIndexOf(".") + 1) == 'txt') {
-            self.separator.editable = true;
-            
-        }
-        
-        
     }//GEN-LAST:event_btnOpenActionPerformed
-    
- 
-
-
 
     function separatorOnSelect(aEditor) {//GEN-FIRST:event_separatorOnSelect
         

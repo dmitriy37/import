@@ -3,43 +3,106 @@
  * @author Dmitriy
  * @module
  */
-function readXLSX(aFilePath) {
+function readXLSX(aParent, aPath) {
     var self = this, model = this.model;
 
-    var fis = null;
-    var OPCPack = null;
-    var wb = null;
+    var fPath = aPath;
+    var fis = null, OPCPack = null;
+    var wb = null, sheet = null, row = null;
+    var rowNum = null, length = null;
+    var firstColumn = false, lastColumn = false;
 
-    self.readFile = function(fPath) {
-        fis = new java.io.FileInputStream(fPath);
+    initialize(fPath);
+    self.readRow = readRow;
+    self.getLength = getLength;
+    self.first = readRow;
+    self.next = getNext;
+    self.prev = getPrev;
+    self.last = getLast;
+    
+    self.setFirstAndLastColums = function(aFirst, aLast) {
+        firstColumn = aFirst;
+        lastColumn = aLast;
+    };
+    
+/**
+ * функция инициализирует файл
+ * @param {type} filePath - путь к файлу
+ * @returns {undefined}
+ */
+    function initialize(filePath) {
+        fis = new java.io.FileInputStream(filePath);
         OPCPack = new org.apache.poi.openxml4j.opc.OPCPackage.open(fis);
         wb = new org.apache.poi.xssf.usermodel.XSSFWorkbook(OPCPack);
-    };
+        sheet = wb.getSheetAt(0);
+        getFirst();
+    }
+    
+    function nextSheet() {
+        
+    }
+    function prevSheet() {
+        
+    }
 
-    self.readFirstRow = function() {
-        var readFileArray = [];
-        var sheet = wb.getSheetAt(0);
-        var row = sheet.getRow(0);
-        for (var j = 0; j < row.getLastCellNum(); j++) {
-            readFileArray[j] = {cellNum: j + 1, cellTitle: row.getCell(j)};
+/**
+ * функция читает текущую строку из файла
+ * @returns {Array} - возвращает объект с данными из строки
+ */
+    function readRow() {
+        try {
+            var rowData = [];
+            row = sheet.getRow(rowNum);
+            for (var j = firstColumn ? firstColumn : 0;
+                     j < lastColumn ? lastColumn : row.getLastCellNum(); j++)
+                rowData[j + 1] = row.getCell(j);
+            return  rowData;
+        } catch (e) {
+            Logger.warning("Ошибка чтения строки " + rowNum + " из файла " + aPath + "\n" + e);
+            return false;
         }
-        return  readFileArray;
-    };
+    }
 
-    self.numberOfRows = function() {
-        var sheet = wb.getSheetAt(0);
-        var rows = sheet.getPhysicalNumberOfRows();
-        return rows;
-    };
+/**
+ * функция возвращает последнюю строку из файла
+ * @returns {Array} - возвращает объект с данными из строки
+ */
+    function getLast() {
+        rowNum = sheet.getPhysicalNumberOfRows() - 1;        
+    }
 
-    self.scroll = function(count) {
-        var sheet = wb.getSheetAt(0);
-        var row = sheet.getRow(count);
-        var readFileArray = [];
-        for (var i = 0; i < row.getLastCellNum(); i++) {
-            readFileArray[i] = {cellNum: i + 1, cellTitle: row.getCell(i)};
+/**
+ * фунция возвращает длинну файла ( кол-во занятых строк )
+ * @returns {unresolved} - длинна файла
+ * todo: Добавить проход по всем листам текущей книги
+ */
+    function getLength() {
+        length = sheet.getPhysicalNumberOfRows();
+        return length;
+    }
+
+/**
+ * функция читает следующую строку файла 
+ * @returns {Array} - возвращает объект с данными из строки
+ */
+    function getNext() {
+        if (rowNum < getLength() - 1) {
+            rowNum++;
+            return true;
+        } else
+            return false;
+    }
+
+/**
+ * функция читате предыдущую строку файла 
+ * @returns {Array} - возвращает объект с данными из строки
+ */
+    function getPrev() {
+        if (rowNum > 0) {
+            rowNum--;
+            return true;
+        } else {
+            return false;
         }
-        return readFileArray;
-    };
-
+    }; 
 }

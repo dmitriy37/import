@@ -1,34 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?><layout defaultCloseOperation="2" name="Form" prefHeight="300px" prefWidth="400px">
-  <widget name="modelGrid" parent="Form" prefHeight="192px" prefWidth="384px" type="DbGridDesignInfo">
-    <rowsColumnsDesignInfo>
+<?xml version="1.0" encoding="UTF-8"?><layout defaultCloseOperation="2" name="Form" prefHeight="377px" prefWidth="519px">
+  <widget mouseClicked="modelGridMouseClicked" name="modelGrid" parent="Form" prefHeight="312px" prefWidth="516px" type="DbGridDesignInfo">
+    <rowsColumnsDesignInfo generalRowFunction="modelGridOnRender">
       <rowsDatasource entityId="139679265111265" field="false"/>
     </rowsColumnsDesignInfo>
+    <treeDesignInfo/>
     <column name="Номер">
       <controlInfo classHint="DbLabelDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
-      <columnsDisplayField/>
       <datamodelElement entityId="139679265111265" fieldName="cellNum"/>
-      <columnsDatasource/>
-      <cellsDatasource/>
       <cellDesignInfo>
-        <rowsKeyField/>
-        <columnsKeyField/>
         <cellValueField/>
+        <columnsKeyField/>
+        <rowsKeyField/>
       </cellDesignInfo>
+      <cellsDatasource/>
+      <columnsDatasource/>
+      <columnsDisplayField/>
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
     </column>
     <column name="Данные">
       <controlInfo classHint="DbLabelDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
-      <columnsDisplayField/>
-      <datamodelElement entityId="139679265111265" fieldName="cellTitle"/>
-      <columnsDatasource/>
-      <cellsDatasource/>
+      <datamodelElement entityId="139679265111265" fieldName="cellData"/>
       <cellDesignInfo>
-        <rowsKeyField/>
-        <columnsKeyField/>
         <cellValueField/>
+        <columnsKeyField/>
+        <rowsKeyField/>
       </cellDesignInfo>
+      <cellsDatasource/>
+      <columnsDatasource/>
+      <columnsDisplayField/>
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
@@ -38,76 +39,83 @@
         <displayField entityId="139679265275957" fieldName="USER_TITLE"/>
         <valueField entityId="139679265275957" fieldName="IMP_MAPPINGCATALOG_ID"/>
       </controlInfo>
-      <columnsDisplayField/>
       <datamodelElement entityId="139679265111265" fieldName="mappingId"/>
-      <columnsDatasource/>
-      <cellsDatasource/>
       <cellDesignInfo>
-        <rowsKeyField/>
-        <columnsKeyField/>
         <cellValueField/>
+        <columnsKeyField/>
+        <rowsKeyField/>
       </cellDesignInfo>
+      <cellsDatasource/>
+      <columnsDatasource/>
+      <columnsDisplayField/>
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
     </column>
     <column name="Доп. параметры">
       <controlInfo classHint="DbLabelDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
-      <columnsDisplayField/>
-      <columnsDatasource/>
-      <cellsDatasource/>
       <cellDesignInfo>
-        <rowsKeyField/>
-        <columnsKeyField/>
         <cellValueField/>
+        <columnsKeyField/>
+        <rowsKeyField/>
       </cellDesignInfo>
+      <cellsDatasource/>
+      <columnsDatasource/>
+      <columnsDisplayField/>
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
     </column>
     <column name="Порядок">
       <controlInfo classHint="DbLabelDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
-      <columnsDisplayField/>
-      <columnsDatasource/>
-      <cellsDatasource/>
       <cellDesignInfo>
-        <rowsKeyField/>
-        <columnsKeyField/>
         <cellValueField/>
+        <columnsKeyField/>
+        <rowsKeyField/>
       </cellDesignInfo>
+      <cellsDatasource/>
+      <columnsDatasource/>
+      <columnsDisplayField/>
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
     </column>
     <column name="Массив">
       <controlInfo classHint="DbCheckDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
-      <columnsDisplayField/>
       <datamodelElement entityId="139679265111265" fieldName="isArray"/>
-      <columnsDatasource/>
-      <cellsDatasource/>
       <cellDesignInfo>
-        <rowsKeyField/>
-        <columnsKeyField/>
         <cellValueField/>
+        <columnsKeyField/>
+        <rowsKeyField/>
       </cellDesignInfo>
+      <cellsDatasource/>
+      <columnsDatasource/>
+      <columnsDisplayField/>
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
     </column>
-    <treeDesignInfo/>
-    <constraints bottom="24px" left="12px" right="4px" top="84px" type="MarginConstraintsDesignInfo"/>
+    <constraints bottom="5px" left="0px" right="3px" top="60px" type="MarginConstraintsDesignInfo"/>
   </widget>
-  <widget handleFunction="selectImportOnRender" name="selectImport" parent="Form" prefHeight="20px" prefWidth="376px" type="DbComboDesignInfo">
+  <widget name="toolBar" parent="Form" prefHeight="25px" prefWidth="516px" rollover="true" type="ToolbarDesignInfo">
+    <constraints height="25px" left="0px" right="3px" top="0px" type="MarginConstraintsDesignInfo"/>
+  </widget>
+  <widget handleFunction="selectImportOnRender" name="selectImport" parent="toolBar" prefHeight="21px" prefWidth="100px" type="DbComboDesignInfo">
     <displayField entityId="139679266751991" fieldName="TITLE"/>
     <valueField entityId="139679266751991" fieldName="IMP_IMPCATALOG_ID"/>
     <datamodelElement entityId="-1" fieldName="ImpVariant_ID"/>
-    <constraints height="20px" left="12px" right="12px" top="12px" type="MarginConstraintsDesignInfo"/>
   </widget>
-  <widget actionPerformed="btnUpActionPerformed" name="btnUp" parent="Form" prefHeight="23px" prefWidth="77px" text="Up" type="ButtonDesignInfo">
-    <constraints height="23px" right="11px" top="48px" type="MarginConstraintsDesignInfo" width="77px"/>
+  <widget actionPerformed="btnSaveImpVarActionPerformed" horizontalTextPosition="0" icon="icons/16x16/actions/list-add.png" name="btnSaveImpVar" parent="toolBar" prefHeight="20px" prefWidth="28px" type="ButtonDesignInfo" verticalTextPosition="3"/>
+  <widget actionPerformed="btnDelImpVarActionPerformed" horizontalTextPosition="0" icon="icons/16x16/actions/list-remove.png" name="btnDelImpVar" parent="toolBar" prefHeight="20px" prefWidth="28px" type="ButtonDesignInfo" verticalTextPosition="3"/>
+  <widget name="toolBar1" parent="Form" prefHeight="25px" prefWidth="516px" rollover="true" type="ToolbarDesignInfo">
+    <constraints height="25px" left="0px" right="3px" top="24px" type="MarginConstraintsDesignInfo"/>
   </widget>
-  <widget actionPerformed="btnDownActionPerformed" name="btnDown" parent="Form" prefHeight="23px" prefWidth="77px" text="Down" type="ButtonDesignInfo">
-    <constraints height="23px" right="107px" top="48px" type="MarginConstraintsDesignInfo" width="77px"/>
-  </widget>
+  <widget name="label1" parent="toolBar1" prefHeight="16px" prefWidth="101px" text="Текущий файл: " type="LabelDesignInfo"/>
+  <widget focusable="false" horizontalTextPosition="0" name="button" parent="toolBar1" prefHeight="18px" prefWidth="48px" text="button" type="ButtonDesignInfo" verticalTextPosition="3"/>
+  <widget name="label2" parent="toolBar1" prefHeight="16px" prefWidth="38px" text="label2" type="LabelDesignInfo"/>
+  <widget focusable="false" horizontalTextPosition="0" name="button1" parent="toolBar1" prefHeight="18px" prefWidth="55px" text="button1" type="ButtonDesignInfo" verticalTextPosition="3"/>
+  <widget name="label" parent="toolBar1" prefHeight="16px" prefWidth="169px" text="Навигация по документу: " type="LabelDesignInfo"/>
+  <widget actionPerformed="btnDownActionPerformed" horizontalTextPosition="0" icon="icons/16x16/actions/new-go-down.png" name="btnDown" parent="toolBar1" prefHeight="20px" prefWidth="28px" type="ButtonDesignInfo" verticalTextPosition="3"/>
+  <widget actionPerformed="btnUpActionPerformed" horizontalTextPosition="0" icon="icons/16x16/actions/new-go-up.png" name="btnUp" parent="toolBar1" prefHeight="20px" prefWidth="28px" type="ButtonDesignInfo" verticalTextPosition="3"/>
   <layout type="MarginLayoutDesignInfo"/>
 </layout>

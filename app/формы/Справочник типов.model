@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><datamodel>
-  <parametersEntity entityHeight="200" entityIconified="false" entityLocationX="12" entityLocationY="12" entityWidth="150"/>
-  <entity Name="addMoreTypeName" Title="" entityHeight="200" entityIconified="false" entityId="139379384317863" entityLocationX="441" entityLocationY="27" entityWidth="150" queryId="addMoreTypeName" tableName="" tableSchemaName=""/>
-  <entity Name="addMappingName" Title="" entityHeight="200" entityIconified="false" entityId="139379280011524" entityLocationX="196" entityLocationY="15" entityWidth="150" queryId="addMappingName" tableName="" tableSchemaName=""/>
-  <referenceRelation leftEntityFieldName="MAPTYPE_ID" leftEntityId="139379384317863" rightEntityFieldName="MAPPINGTYPE_ID" rightEntityId="139379280011524"/>
-</datamodel>

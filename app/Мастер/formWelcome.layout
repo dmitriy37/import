@@ -3,19 +3,19 @@
     <layout type="MarginLayoutDesignInfo"/>
     <constraints bottom="39px" left="0px" right="-1px" top="0px" type="MarginConstraintsDesignInfo"/>
   </widget>
-  <widget name="panelInputFile" parent="Form" prefHeight="264px" prefWidth="408px" type="PanelDesignInfo" visible="false">
+  <widget name="panelInputFile" parent="Form" prefHeight="264px" prefWidth="408px" type="PanelDesignInfo">
     <layout type="MarginLayoutDesignInfo"/>
     <constraints bottom="39px" left="0px" right="-1px" top="0px" type="MarginConstraintsDesignInfo"/>
   </widget>
-  <widget name="panelSetting" parent="Form" prefHeight="264px" prefWidth="408px" type="PanelDesignInfo" visible="false">
+  <widget name="panelSetting" parent="Form" prefHeight="264px" prefWidth="408px" type="PanelDesignInfo">
     <layout type="MarginLayoutDesignInfo"/>
     <constraints bottom="39px" left="0px" right="-1px" top="0px" type="MarginConstraintsDesignInfo"/>
   </widget>
-  <widget name="panelExtraSetting" parent="Form" prefHeight="264px" prefWidth="408px" type="PanelDesignInfo" visible="false">
+  <widget name="panelExtraSetting" parent="Form" prefHeight="264px" prefWidth="408px" type="PanelDesignInfo">
     <layout type="MarginLayoutDesignInfo"/>
     <constraints bottom="39px" left="0px" right="-1px" top="0px" type="MarginConstraintsDesignInfo"/>
   </widget>
-  <widget name="panelImportInfo" parent="Form" prefHeight="264px" prefWidth="408px" type="PanelDesignInfo" visible="false">
+  <widget name="panelImportInfo" parent="Form" prefHeight="264px" prefWidth="408px" type="PanelDesignInfo">
     <layout type="MarginLayoutDesignInfo"/>
     <constraints bottom="39px" left="0px" right="-1px" top="0px" type="MarginConstraintsDesignInfo"/>
   </widget>

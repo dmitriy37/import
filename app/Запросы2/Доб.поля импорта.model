@@ -4,5 +4,5 @@
   </parameters>
   <parametersEntity entityHeight="200" entityIconified="false" entityLocationX="8" entityLocationY="7" entityWidth="150"/>
   <entity Title="" entityHeight="200" entityIconified="false" entityId="139455922551219" entityLocationX="394" entityLocationY="37" entityWidth="150" tableAlias="t1" tableName="IMP_IMPORTVARIANT" tableSchemaName=""/>
-  <relation leftEntityFieldName="ID_CATALOGOFIMP" leftEntityId="139455922551219" rightEntityId="-1" rightEntityParameterName="ImpVariant_ID"/>
+  <relation leftEntityFieldName="id_catalogofimp" leftEntityId="139455922551219" rightEntityId="-1" rightEntityParameterName="ImpVariant_ID"/>
 </datamodel>

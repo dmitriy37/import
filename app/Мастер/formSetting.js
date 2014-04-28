@@ -53,8 +53,8 @@ function formSetting() {
             self.parent.fileAPI = workFile;
             var data = workFile.getData;
             if(data.length > 0){
-            showScrollFile(data);
-        }
+                showScrollFile(data);
+            }
         }
 
 
@@ -93,74 +93,56 @@ function formSetting() {
      */
     function showScrollFile(array) {
         model.readFile.first();
-        if (array.length > model.readFile.length) {
-            model.readFile.first();
-            for (var i in array) {
-                if (model.readFile.length > i) {
-                    model.readFile.cellData = array[i].cellData;
-                    model.readFile.next();
-                }
-                else
-                    model.readFile.insert(model.readFile.schema.cellNum, array[i].cellNum + 1, model.readFile.schema.cellData, array[i].cellData);
-            }
-        }
-        else if (array.length == model.readFile.length) {
-            model.readFile.first();
-            for (var i in array) {
+        for (var i in array) {
+            if (model.readFile.length > i) {
                 model.readFile.cellData = array[i].cellData;
                 model.readFile.next();
-            }
+            } else
+                model.readFile.insert(model.readFile.schema.cellNum, array[i].cellNum + 1,
+                                      model.readFile.schema.cellData, array[i].cellData);
         }
-        else if (model.readFile.length > array.length) {
-            model.readFile.first();
-            for (var i = 0; i < model.readFile.length; i++) {
-                if (array.length > i) {
-                    model.readFile.cellData = array[i].cellData;
-                    model.readFile.next();
-                }
-                else {
-                    model.readFile.cellData = '';
-                    model.readFile.next();
-                }
-            }
+        if (array.length < model.readFile.length) {
+            //to do Очистить все что дальше есть
         }
+//        else if (model.readFile.length > array.length) {
+//            model.readFile.first();
+//            for (var i = 0; i < model.readFile.length; i++) {
+//                if (array.length > i) {
+//                    model.readFile.cellData = array[i].cellData;
+//                    model.readFile.next();
+//                }
+//                else {
+//                    model.readFile.cellData = '';
+//                    model.readFile.next();
+//                }
+//            }
+//        }
     }
 
     /**
      * функция отображения варианта сопоставления
      * @returns {undefined}
      */
-    function toShowVariant() {
+    function showVariant() {
         model.readFile.beforeFirst();
         while (model.readFile.next()) {
             model.readFile.mappingId = '';
         }
-        model.readFile.first();
         model.addImpVariant.last();
-        var lastCell = model.addImpVariant.CELLNUMBER;
-        model.readFile.last();
-        var first = model.readFile.cellNum + 1;
+        var cellsCount = model.addImpVariant.CELLNUMBER;
+        var lastCell = model.readFile.cellNum + 1;
         if (model.addImpVariant.length > model.readFile.length) {
-            for (var i = first; i <= lastCell; i++) {
+            for (var i = lastCell; i <= cellsCount; i++) {
                 model.readFile.insert(model.readFile.schema.cellNum, i);
             }
-            model.readFile.beforeFirst();
-            model.addImpVariant.first();
-            while (model.readFile.next()) {
-                if (model.readFile.cellNum == model.addImpVariant.CELLNUMBER) {
-                    model.readFile.mappingId = model.addImpVariant.MAPPINGCATALOG_ID;
-                    model.addImpVariant.next();
-                }
-            }
         }
-        else {
-            model.readFile.beforeFirst();
-            model.addImpVariant.first();
-            while (model.readFile.next()) {
-                if (model.readFile.cellNum == model.addImpVariant.CELLNUMBER) {
-                    model.readFile.mappingId = model.addImpVariant.MAPPINGCATALOG_ID;
-                    model.addImpVariant.next();
-                }
+        model.readFile.beforeFirst();
+        model.addImpVariant.first();
+        while (model.readFile.next()) {
+            var impVariantCell = model.addImpVariant.find(model.addImpVariant.schema.cellnumber,
+                                                          model.readFile.cellNum);
+            if (impVariantCell.length > 0) {
+                model.readFile.mappingId = impVariantCell[0].mappingcatalog_id;
             }
         }
         model.readFile.first();
@@ -177,13 +159,14 @@ function formSetting() {
         while (model.readFile.next()) {
             if (model.readFile.mappingId) {
                 var mappingId = model.readFile.mappingId;
-                model.editMapping.scrollTo(model.editMapping.findById(mappingId));
-                var mappingTitle = model.editMapping.CODER_TITLE;
+                var mapping = model.editMapping.findById(mappingId);
+                
+                var mappingTitle = mapping.CODER_TITLE;
                 var cellNum = model.readFile.cellNum - 1;
                 var isArr = model.readFile.isArray;
-                res[i] = {mapping: mappingTitle,
-                    cellNumber: cellNum,
-                    isArray: isArr};
+                res[i] = {  mapping: mappingTitle,
+                            cellNumber: cellNum,
+                            isArray: isArr};
                 i++;
             }
         }
@@ -201,16 +184,6 @@ function formSetting() {
             showScrollFile(dataObject);
         }
     }//GEN-LAST:event_btnUpActionPerformed
-
-    function selectImportOnRender(evt) {//GEN-FIRST:event_selectImportOnRender
-        /*
-         * отображения типов сопоставления на modelGrid ( не работает )
-         */
-        toShowVariant();
-        self.modelGrid.onMouseClicked();
-   
-    
-    }//GEN-LAST:event_selectImportOnRender
 
     function btnDelImpVarActionPerformed(evt) {//GEN-FIRST:event_btnDelImpVarActionPerformed
         /**
@@ -234,18 +207,8 @@ function formSetting() {
         /**
          * для сохранения нового варианта импорта ( добавить перезапись текущего варианта )
          */
-        model.readFile.beforeFirst();
-        while (model.readFile.next()) {
-            if (model.readFile.mappingId) {
-                var checkMapping = true;
-                break;
-            }
-            else
-                checkMapping = false;
-        }
-        if (checkMapping) {
             var msg = prompt('Введите название варианта импорта', '', 'Внимание');
-            model.addImport.insert(model.addImport.schema.TITLE, msg);
+            if (!!msg) model.addImport.insert(model.addImport.schema.TITLE, msg);
             model.readFile.beforeFirst();
             while (model.readFile.next()) {
                 if (model.readFile.mappingId) {
@@ -255,11 +218,7 @@ function formSetting() {
                             model.addImpVariant.schema.ID_CATALOGOFIMP, model.addImport.IMP_IMPCATALOG_ID);
                 }
             }
-            model.readFile.first();
             model.save();
-        }
-        else
-            alert("Выберите тип сопоставления", 'Внимание');
     }//GEN-LAST:event_btnSaveImpVarActionPerformed
 
     function btnDownActionPerformed(evt) {//GEN-FIRST:event_btnDownActionPerformed
@@ -290,15 +249,11 @@ function formSetting() {
         }
     }//GEN-LAST:event_btnLeftActionPerformed
 
-    function modelGridMouseClicked(evt) {//GEN-FIRST:event_modelGridMouseClicked
-        
-    }//GEN-LAST:event_modelGridMouseClicked
-
-    function modelGridOnRender(evt) {//GEN-FIRST:event_modelGridOnRender
-     
-    }//GEN-LAST:event_modelGridOnRender
-
     function MappingTypeOnRender(evt) {//GEN-FIRST:event_MappingTypeOnRender
       
     }//GEN-LAST:event_MappingTypeOnRender
+
+    function paramsOnChanged(evt) {//GEN-FIRST:event_paramsOnChanged
+        showVariant();
+    }//GEN-LAST:event_paramsOnChanged
 }

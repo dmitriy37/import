@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?><layout defaultCloseOperation="2" name="Form" prefHeight="377px" prefWidth="518px">
-  <widget mouseClicked="modelGridMouseClicked" name="modelGrid" parent="Form" prefHeight="264px" prefWidth="516px" type="DbGridDesignInfo">
-    <rowsColumnsDesignInfo generalRowFunction="modelGridOnRender">
-      <rowsDatasource entityId="139679265111265" field="false"/>
-    </rowsColumnsDesignInfo>
+  <widget name="modelGrid" parent="Form" prefHeight="264px" prefWidth="516px" type="DbGridDesignInfo">
     <column name="Номер">
       <controlInfo classHint="DbLabelDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
-      <columnsDisplayField/>
       <datamodelElement entityId="139679265111265" fieldName="cellNum"/>
-      <columnsDatasource/>
-      <cellsDatasource/>
       <cellDesignInfo>
-        <rowsKeyField/>
-        <columnsKeyField/>
         <cellValueField/>
+        <columnsKeyField/>
+        <rowsKeyField/>
       </cellDesignInfo>
+      <cellsDatasource/>
+      <columnsDatasource/>
+      <columnsDisplayField/>
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
     </column>
     <column name="Данные">
       <controlInfo classHint="DbLabelDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
-      <columnsDisplayField/>
       <datamodelElement entityId="139679265111265" fieldName="cellData"/>
-      <columnsDatasource/>
-      <cellsDatasource/>
       <cellDesignInfo>
-        <rowsKeyField/>
-        <columnsKeyField/>
         <cellValueField/>
+        <columnsKeyField/>
+        <rowsKeyField/>
       </cellDesignInfo>
+      <cellsDatasource/>
+      <columnsDatasource/>
+      <columnsDisplayField/>
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
@@ -38,90 +35,98 @@
         <valueField entityId="139679265275957" fieldName="IMP_MAPPINGCATALOG_ID"/>
         <displayField entityId="139679265275957" fieldName="USER_TITLE"/>
       </controlInfo>
-      <columnsDisplayField/>
       <datamodelElement entityId="139679265111265" fieldName="mappingId"/>
-      <columnsDatasource/>
-      <cellsDatasource/>
       <cellDesignInfo>
-        <rowsKeyField/>
-        <columnsKeyField/>
         <cellValueField/>
+        <columnsKeyField/>
+        <rowsKeyField/>
       </cellDesignInfo>
+      <cellsDatasource/>
+      <columnsDatasource/>
+      <columnsDisplayField/>
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
     </column>
     <column name="Доп. параметры">
       <controlInfo classHint="DbLabelDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
-      <columnsDisplayField/>
-      <columnsDatasource/>
-      <cellsDatasource/>
       <cellDesignInfo>
-        <rowsKeyField/>
-        <columnsKeyField/>
         <cellValueField/>
+        <columnsKeyField/>
+        <rowsKeyField/>
       </cellDesignInfo>
+      <cellsDatasource/>
+      <columnsDatasource/>
+      <columnsDisplayField/>
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
     </column>
     <column name="Порядок">
       <controlInfo classHint="DbLabelDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
-      <columnsDisplayField/>
-      <columnsDatasource/>
-      <cellsDatasource/>
       <cellDesignInfo>
-        <rowsKeyField/>
-        <columnsKeyField/>
         <cellValueField/>
+        <columnsKeyField/>
+        <rowsKeyField/>
       </cellDesignInfo>
+      <cellsDatasource/>
+      <columnsDatasource/>
+      <columnsDisplayField/>
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
     </column>
     <column name="Массив">
       <controlInfo classHint="DbCheckDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
-      <columnsDisplayField/>
       <datamodelElement entityId="139679265111265" fieldName="isArray"/>
-      <columnsDatasource/>
-      <cellsDatasource/>
       <cellDesignInfo>
-        <rowsKeyField/>
-        <columnsKeyField/>
         <cellValueField/>
+        <columnsKeyField/>
+        <rowsKeyField/>
       </cellDesignInfo>
+      <cellsDatasource/>
+      <columnsDatasource/>
+      <columnsDisplayField/>
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
     </column>
+    <rowsColumnsDesignInfo>
+      <rowsDatasource entityId="139679265111265" field="false"/>
+    </rowsColumnsDesignInfo>
     <treeDesignInfo/>
     <constraints bottom="5px" left="0px" right="2px" top="108px" type="MarginConstraintsDesignInfo"/>
   </widget>
   <widget floatable="false" name="toolBar1" parent="Form" prefHeight="24px" prefWidth="520px" rollover="true" type="ToolbarDesignInfo">
-    <constraints height="24px" left="0px" right="-2px" top="84px" type="MarginConstraintsDesignInfo"/>
+    <constraints height="24px" left="0px" top="36px" type="MarginConstraintsDesignInfo" width="520px"/>
   </widget>
-  <widget name="fileInfo" parent="toolBar1" prefHeight="14px" prefWidth="87px" text="Текущий файл :  " type="LabelDesignInfo"/>
+  <widget name="fileInfo" parent="toolBar1" prefHeight="16px" prefWidth="109px" text="Текущий файл :  " type="LabelDesignInfo"/>
   <widget name="labelFileName" parent="toolBar1" prefHeight="0px" prefWidth="0px" type="LabelDesignInfo"/>
-  <widget name="labelSelect" parent="toolBar1" prefHeight="14px" prefWidth="51px" text="Выбран :  " type="LabelDesignInfo"/>
+  <widget name="labelSelect" parent="toolBar1" prefHeight="16px" prefWidth="63px" text="Выбран :  " type="LabelDesignInfo"/>
   <widget name="labelFileCount" parent="toolBar1" prefHeight="0px" prefWidth="0px" type="LabelDesignInfo"/>
-  <widget name="labelIs" parent="toolBar1" prefHeight="14px" prefWidth="11px" text="из" type="LabelDesignInfo"/>
+  <widget name="labelIs" parent="toolBar1" prefHeight="16px" prefWidth="14px" text="из" type="LabelDesignInfo"/>
   <widget name="labelFileLength" parent="toolBar1" prefHeight="0px" prefWidth="0px" type="LabelDesignInfo"/>
-  <widget actionPerformed="btnLeftActionPerformed" icon="icons/16x16/actions/new-go-previous.png" name="btnLeft" parent="toolBar1" prefHeight="22px" prefWidth="23px" type="ButtonDesignInfo"/>
-  <widget name="labelSpace" parent="toolBar1" prefHeight="14px" prefWidth="6px" text="  " type="LabelDesignInfo"/>
-  <widget actionPerformed="btnRightActionPerformed" icon="icons/16x16/actions/new-go-next.png" name="btnRight" parent="toolBar1" prefHeight="22px" prefWidth="23px" type="ButtonDesignInfo"/>
+  <widget actionPerformed="btnLeftActionPerformed" icon="icons/16x16/actions/new-go-previous.png" name="btnLeft" parent="toolBar1" prefHeight="20px" prefWidth="28px" type="ButtonDesignInfo"/>
+  <widget name="labelSpace" parent="toolBar1" prefHeight="16px" prefWidth="8px" text="  " type="LabelDesignInfo"/>
+  <widget actionPerformed="btnRightActionPerformed" icon="icons/16x16/actions/new-go-next.png" name="btnRight" parent="toolBar1" prefHeight="20px" prefWidth="28px" type="ButtonDesignInfo"/>
   <widget name="labelSpace2" parent="toolBar1" prefHeight="0px" prefWidth="0px" type="LabelDesignInfo"/>
-  <widget actionPerformed="btnUpActionPerformed" horizontalTextPosition="0" icon="icons/16x16/actions/new-go-up.png" name="btnUp" parent="toolBar1" prefHeight="22px" prefWidth="23px" type="ButtonDesignInfo"/>
   <widget name="labelSpace3" parent="toolBar1" prefHeight="0px" prefWidth="0px" type="LabelDesignInfo"/>
-  <widget actionPerformed="btnDownActionPerformed" horizontalTextPosition="0" icon="icons/16x16/actions/new-go-down.png" name="btnDown" parent="toolBar1" prefHeight="22px" prefWidth="23px" type="ButtonDesignInfo"/>
   <widget floatable="false" name="toolBar" parent="Form" prefHeight="25px" prefWidth="518px" rollover="true" type="ToolbarDesignInfo">
     <constraints height="25px" left="0px" right="0px" top="0px" type="MarginConstraintsDesignInfo"/>
   </widget>
-  <widget actionPerformed="btnSaveImpVarActionPerformed" horizontalTextPosition="10" icon="icons/16x16/actions/list-add.png" name="btnSaveImpVar" parent="toolBar" prefHeight="23px" prefWidth="23px" type="ButtonDesignInfo"/>
-  <widget handleFunction="selectImportOnRender" name="selectImport" parent="toolBar" prefHeight="20px" prefWidth="100px" type="DbComboDesignInfo">
-    <valueField entityId="139679266751991" fieldName="IMP_IMPCATALOG_ID"/>
-    <displayField entityId="139679266751991" fieldName="TITLE"/>
+  <widget actionPerformed="btnSaveImpVarActionPerformed" horizontalTextPosition="10" icon="icons/16x16/actions/list-add.png" name="btnSaveImpVar" parent="toolBar" prefHeight="20px" prefWidth="28px" type="ButtonDesignInfo"/>
+  <widget name="selectImport" parent="toolBar" prefHeight="21px" prefWidth="100px" type="DbComboDesignInfo">
+    <valueField entityId="139679266751991" fieldName="imp_impcatalog_id"/>
+    <displayField entityId="139679266751991" fieldName="title"/>
     <datamodelElement entityId="-1" fieldName="ImpVariant_ID"/>
   </widget>
-  <widget actionPerformed="btnDelImpVarActionPerformed" horizontalTextPosition="0" icon="icons/16x16/actions/list-remove.png" name="btnDelImpVar" parent="toolBar" prefHeight="23px" prefWidth="23px" type="ButtonDesignInfo"/>
+  <widget actionPerformed="btnDelImpVarActionPerformed" horizontalTextPosition="0" icon="icons/16x16/actions/list-remove.png" name="btnDelImpVar" parent="toolBar" prefHeight="20px" prefWidth="28px" type="ButtonDesignInfo"/>
+  <widget name="toolBar2" parent="Form" prefHeight="25px" prefWidth="516px" rollover="true" type="ToolbarDesignInfo">
+    <constraints height="25px" left="0px" top="72px" type="MarginConstraintsDesignInfo" width="516px"/>
+  </widget>
+  <widget name="label" parent="toolBar2" prefHeight="16px" prefWidth="156px" text="Текущая строка: 44/100" type="LabelDesignInfo"/>
+  <widget actionPerformed="btnUpActionPerformed" horizontalTextPosition="0" icon="icons/16x16/actions/new-go-up.png" name="btnUp" parent="toolBar2" prefHeight="20px" prefWidth="28px" type="ButtonDesignInfo"/>
+  <widget actionPerformed="btnDownActionPerformed" horizontalTextPosition="0" icon="icons/16x16/actions/new-go-down.png" name="btnDown" parent="toolBar2" prefHeight="20px" prefWidth="28px" type="ButtonDesignInfo"/>
+  <nonvisual name="JSeparator" prefHeight="10px" prefWidth="50px" type="MenuSeparatorDesignInfo"/>
   <layout type="MarginLayoutDesignInfo"/>
 </layout>

@@ -27,25 +27,25 @@ function readTXT(aPath, aSeparator) {
     
     function getData() {
      //   initialize(fPath);
-                var separator = fSeparator;
+        var separator = fSeparator;
         if (separator) {
             var string = null;
             var stringArray = [];
-            while (scanner.hasNext()) {
+            if (scanner.hasNext()) {
                 string = scanner.nextLine();
                 string = string.split(separator);
                 if (string.length > 1) {
                     fileCount++;
-                    break;
                 }         
-            }
-            if (string.length > 1) {
-                for (var i = 0; i < string.length; i++) {
-                    stringArray[i] = {cellNum: i, cellData: string[i]};
+                if (string.length > 1) {
+                    for (var i = 0; i < string.length; i++) {
+                        stringArray[i] = {cellNum: i, cellData: string[i]};
+                    }
+                    readFileArray.push(stringArray);
+                    return stringArray;
                 }
-                readFileArray.push(stringArray);
-                return stringArray;
-            }
+            } else
+                return null;
         }
         else
             return null;

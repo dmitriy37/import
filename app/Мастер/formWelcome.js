@@ -19,8 +19,10 @@ function formWelcome() {
     /* self.filePath - путь файла
      * self.separator - разделитель
      */
-    self.filePath = null;
+    self.filePath = [];
     self.separator = null;
+    self.checkText = null;
+    self.fileAPI = null;
 
 
     /* FormInputFile.parent - доступ к форме выбора файла
@@ -70,23 +72,26 @@ function formWelcome() {
             showPanel(click, panelArray);
         }
         else if (click == 1) {
+            form.resizable = false;
             self.btnBack.visible = true;
-            self.btnNext.enabled = false;
+       //     self.btnNext.enabled = false;
             showPanel(click, panelArray);
-            toCheckFilePath(FormInputFile.textFilePath.text);
+           // toCheckFilePath(FormInputFile.textFilePath.text);
             FormInputFile.parent = self;
-            check = true;
+        //    self.btnNext.enabled = true;
+            check = true;   
         }
         else if (click == 2) {
+            form.resizable = true;
             self.btnNext.visible = true;
             showPanel(click, panelArray);
-            FormSetting.toShowFile(self.filePath, FormInputFile.model.params.separatorID, check);
+            FormSetting.toInitializeFile(self.filePath, FormInputFile.model.params.separatorID, check);
         }
         else if (click == 3) {
             showPanel(click, panelArray);
             check = false;
-            obj4Import = FormSetting.makeImpObj();
-            impModule = new ImportModule(self.filePath, self.separator, obj4Import);
+            obj4Import = FormSetting.makeImpObj();         
+            impModule = new ImportModule(self.filePath, self.separator, obj4Import, self.fileAPI);
             var obj = impModule.createImpArr();
             FormExtraSetting.impInfo(obj, obj4Import);
         }
@@ -115,11 +120,24 @@ function formWelcome() {
     /*
      * если файл выбран то btnNext активна
      */
-    function toCheckFilePath(text) {
-        if (text)
+    function toCheckFilePath(text, checkText) {
+    /*    if (text && checkText){
+            self.btnNext.enabled = true;}
+        else{
+            self.btnNext.enabled = false;}
+        else if (checkText == false) {
+            self.btnNext.enabled = true;}*/
+        
+        if(checkText) {
+            if(text)
+                self.btnNext.enabled = true;
+            else
+                self.btnNext.enabled = false;
+        }
+        else if(!checkText) {
             self.btnNext.enabled = true;
-        else
-            self.btnNext.enabled = false;
+        }
+        
     }
 
     function btnNextActionPerformed(evt) {//GEN-FIRST:event_btnNextActionPerformed

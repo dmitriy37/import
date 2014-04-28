@@ -1,6 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?><layout defaultCloseOperation="2" name="Form" prefHeight="300px" prefWidth="400px">
-  <widget name="label" parent="Form" prefHeight="14px" prefWidth="156px" text="ImportInfp" type="LabelDesignInfo">
-    <constraints height="14px" left="132px" top="96px" type="MarginConstraintsDesignInfo" width="156px"/>
-  </widget>
   <layout type="MarginLayoutDesignInfo"/>
 </layout>

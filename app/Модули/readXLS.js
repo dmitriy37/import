@@ -3,8 +3,8 @@
  * @author Dmitriy
  * @module
  */
-function readXLS(aParent, aPath) {
-  var self = this, model = this.model;
+function readXLS(aPath) {
+    var self = this, model = this.model;
 
     var fPath = aPath;
     var fis = null;
@@ -13,89 +13,107 @@ function readXLS(aParent, aPath) {
     var count = null;
     var sheet = null;
     var row = null;
+    var fileCount = 0;
+    var rowCount = 0;
+    var sheetCount = 0;
+  
+  
 
 
 
-    self.initialize = initialize(fPath);
+    initialize(fPath);
     self.getData = getData();
-    self.getLength = getLength();
- //   self.getFirst = getFirst();
-    self.getFirst = self.getData;
-    self.getLast = getLast();
+    //self.getLength = getLength();
+  //  self.getFirst = getFirst();
+  //  self.getFirst = self.getData;
+    self.getLast = getLast;
+    //   self.getLast = getLast();
 
-    /*    self.getData = {};
-     self.getFirst = {};
-     self.getLast = {};
-     self.getLength = {};
-     self.setPosition = {};
-     self.getPosition = {};
-     */
-    function initialize(filePath) {
-        fis = new java.io.FileInputStream(filePath);
-        OPCPack = new org.apache.poi.openxml4j.opc.OPCPackage.open(fis);
-        wb = new org.apache.poi.xssf.usermodel.XSSFWorkbook(OPCPack);
+
+    function initialize(filePath) {        
+        fis = new java.io.FileInputStream(filePath[fileCount]);
+        wb = new org.apache.poi.hssf.usermodel.HSSFWorkbook(fis);
     }
-
-    function getData() {
+    
+    function getData() {      
         var readFileArray = [];
         sheet = wb.getSheetAt(0);
-        row = sheet.getRow(0);
+        row = sheet.getRow(rowCount);
         for (var j = 0; j < row.getLastCellNum(); j++) {
-            readFileArray[j] = {cellNum: j + 1, cellData: row.getCell(j)};
+            readFileArray[j] = {cellNum: j, cellData: row.getCell(j)};
         }
         return  readFileArray;
     }
 
-/*    function getFirst() {
-        var readFileArray = [];
-        var sheet = wb.getSheetAt(0);
-        var row = sheet.getRow(0);
-        for (var j = 0; j < row.getLastCellNum(); j++) {
-            readFileArray[j] = {cellNum: j + 1, cellData: row.getCell(j)};
-        }
-        return  readFileArray;
-    }*/
-
-    function getLast() {
-        var readFileArray = [];
-       // var sheet = wb.getSheetAt(0);
-        var rows = sheet.getPhysicalNumberOfRows();        
-        var row = sheet.getRow(rows - 1);        
-        for (var j = 0; j < row.getLastCellNum(); j++) {
-            readFileArray[j] = {cellNum: j + 1, cellData: row.getCell(j)};
-        }
-        return  readFileArray;
+    self.getFirst = function () {
+        rowCount = 0;
+        return getData();
     }
 
-    function getLength() {
+     function getLast() {
+        rowCount = sheet.getPhysicalNumberOfRows() - 1;
+        return getData();
+    }
+
+    self.getLength = function () {
         var sheet = wb.getSheetAt(0);
         var rows = sheet.getPhysicalNumberOfRows();
         return rows;
-    }
+    };
+
 
     self.getNext = function() {
-        if (count < getLength() - 1) {
-            count++;
-         //   var sheet = wb.getSheetAt(0);
-            var row = sheet.getRow(count);
-            var readFileArray = [];
-            for (var i = 0; i < row.getLastCellNum(); i++) {
-                readFileArray[i] = {cellNum: i + 1, cellData: row.getCell(i)};
-            }
-            return readFileArray;
+        if (rowCount < self.getLength() - 1) {
+            rowCount++;
+            return getData();
         }
     };
 
     self.getPrev = function() {
-        if (count > 0) {
-            count--;
-          //  var sheet = wb.getSheetAt(0);
-            var row = sheet.getRow(count);
-            var readFileArray = [];
-            for (var i = 0; i < row.getLastCellNum(); i++) {
-                readFileArray[i] = {cellNum: i + 1, cellData: row.getCell(i)};
-            }
-            return readFileArray;
+        if (rowCount > 0) {
+            rowCount--;
+            return getData();
         }
-    }; 
+    };
+    
+        self.numOfFile = function () {
+        return fileCount;
+    }
+    
+
+    self.getNextFile = function() {
+        rowCount = 0;
+        if(fileCount == fPath.length - 1) {
+            fileCount = - 1;
+        }     
+      if (fileCount < fPath.length - 1) {           
+            fileCount++;
+            initialize(fPath);
+            return getData();
+        }
+        else
+            return false;
+    };
+
+
+    self.getPrevFile = function() {
+        rowCount = 0;
+         if (fileCount > 0) {
+            fileCount--;
+            initialize(fPath);
+            return getData();
+        }
+        else
+            return false;
+    };
+    
+    
+    self.nullAllParam = function () {
+        fileCount = 0;
+        initialize(fPath);
+    };
+    
+      self.numOfFile = function () {
+        return fileCount;
+    }
 }

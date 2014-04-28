@@ -26,16 +26,17 @@ function ImportAPI(filePath, separator) {
      * @returns {readTXT|readXLS|readXLSX} - возвращает API
      */
     function initializeFile(filePath, separator) {
-        var ext = filePath.substring(filePath.lastIndexOf(".") + 1);
+        var fPath = filePath[0];
+        var ext = fPath.substring(fPath.lastIndexOf(".") + 1);
         switch (ext) {
             case 'txt':
-                return new readTXT(self, filePath, separator);
+                return new readTXT(filePath, separator);
                 break;
             case 'xls':
-                return new readXLS(self, filePath);
+                return new readXLS(filePath);
                 break;
             case 'xlsx':
-                return new readXLSX(self, filePath);
+                return new readXLSX(filePath);
                 break;
         };
     }

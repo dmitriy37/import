@@ -6,3 +6,4 @@
 Select * 
 From IMP_IMPORTVARIANT t1
  Where t1.ID_CATALOGOFIMP = :ImpVariant_ID
+Order by t1.CELLNUMBER

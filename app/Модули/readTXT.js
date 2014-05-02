@@ -11,7 +11,7 @@ function readTXT(aPath, aSeparator) {
     var readFileArray = [];
     var fis = null;
     var scanner = null;
-    var count = 2;
+    var count = 0;
     var fileCount = 0;
     var fileNum = 0;  
     
@@ -21,61 +21,55 @@ function readTXT(aPath, aSeparator) {
     self.getData = getData();
     
         function initialize(fPath) {
-        fis = new java.io.FileInputStream(fPath[fileNum]);
+        fis = new java.io.FileInputStream(fPath);
         scanner = new java.util.Scanner(fis);
     }
-    
+
     function getData() {
-     //   initialize(fPath);
         var separator = fSeparator;
         if (separator) {
             var string = null;
             var stringArray = [];
-            if (scanner.hasNext()) {
+            while (scanner.hasNext()) {
                 string = scanner.nextLine();
                 string = string.split(separator);
                 if (string.length > 1) {
                     fileCount++;
-                }         
-                if (string.length > 1) {
-                    for (var i = 0; i < string.length; i++) {
-                        stringArray[i] = {cellNum: i, cellData: string[i]};
+                    count++;
+                    if (string.length > 1) {
+                        for (var i = 0; i < string.length; i++) {
+                            stringArray[i] = {cellNum: i, cellData: string[i]};
+                        }
+                        readFileArray.push(stringArray);
+                        return stringArray;
                     }
-                    readFileArray.push(stringArray);
-                    return stringArray;
+                    break;
                 }
-            } else
-                return null;
+            }
         }
         else
             return null;
     }
     
-       self.getNextFile = function () {
-        fileCount = 0;
-        readFileArray.length = 0;
-        if (fileNum < fPath.length - 1) {
-            fileNum++;   
-            initialize(fPath);
-            return getData();
-        }
-        else 
-            return null;
-    };
-    
-        self.getPrevFile = function () {
-        fileCount = 0;
-        readFileArray.length = 0;
-        if(fileNum > 0) {
-            fileNum--;
-            initialize(fPath);
-            return getData();
-        }
+    self.getCursor = function () {
+        if(count < fileCount - 1)
+            return count;
         else
-            return null;
+            return fileCount;
     };
     
-    self.getNext = function () {      
+    self.setCursor = function (num) {
+        if(count < fileCount - 1)
+            count = num;
+    };
+    
+    
+    
+    self.getNext = function () {
+        if(readFileArray.length == 10) {
+            readFileArray.shift();
+            fileCount--;
+        }
         if (count < fileCount - 1) {            
             count++;
             return readFileArray[count];            
@@ -87,6 +81,7 @@ function readTXT(aPath, aSeparator) {
         self.getPrev = function() {
         if (count >= 1) {
             count--;
+            
             return readFileArray[count];
         }
     };
@@ -96,8 +91,6 @@ function readTXT(aPath, aSeparator) {
         if(readFileArray[0])
             return readFileArray[0];
         else {
-       // var fis = new java.io.FileInputStream(fPath[fileNum]);
-       // var scanner = new java.util.Scanner(fis);
             initialize(fPath);
             var separator = fSeparator;
         if (separator) {
@@ -132,13 +125,9 @@ function readTXT(aPath, aSeparator) {
         
     };
     
-    self.numOfFile = function () {
-        return fileNum;
-    };
-    
     self.getLength = function () {
         var fileLength = 0;
-        var fis = new java.io.FileInputStream(fPath[fileNum]);
+        var fis = new java.io.FileInputStream(fPath);
         var scanner = new java.util.Scanner(fis);
         var separator = fSeparator;
         if (separator) {

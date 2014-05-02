@@ -23,19 +23,24 @@ function readXLS(aPath) {
 
     initialize(fPath);
     self.getData = getData();
-    //self.getLength = getLength();
-  //  self.getFirst = getFirst();
-  //  self.getFirst = self.getData;
     self.getLast = getLast;
-    //   self.getLast = getLast();
+ 
 
 
-    function initialize(filePath) {        
-        fis = new java.io.FileInputStream(filePath[fileCount]);
+    function initialize(filePath) { 
+        fis = new java.io.FileInputStream(filePath);
         wb = new org.apache.poi.hssf.usermodel.HSSFWorkbook(fis);
     }
     
-    function getData() {      
+    self.setCursor = function (num) {
+        rowCount = num;
+    };
+    
+    self.getCursor = function () {
+        return rowCount;
+    }
+    
+     function getData() {      
         var readFileArray = [];
         sheet = wb.getSheetAt(0);
         row = sheet.getRow(rowCount);
@@ -43,7 +48,7 @@ function readXLS(aPath) {
             readFileArray[j] = {cellNum: j, cellData: row.getCell(j)};
         }
         return  readFileArray;
-    }
+    };
 
     self.getFirst = function () {
         rowCount = 0;
@@ -75,45 +80,4 @@ function readXLS(aPath) {
             return getData();
         }
     };
-    
-        self.numOfFile = function () {
-        return fileCount;
-    }
-    
-
-    self.getNextFile = function() {
-        rowCount = 0;
-        if(fileCount == fPath.length - 1) {
-            fileCount = - 1;
-        }     
-      if (fileCount < fPath.length - 1) {           
-            fileCount++;
-            initialize(fPath);
-            return getData();
-        }
-        else
-            return false;
-    };
-
-
-    self.getPrevFile = function() {
-        rowCount = 0;
-         if (fileCount > 0) {
-            fileCount--;
-            initialize(fPath);
-            return getData();
-        }
-        else
-            return false;
-    };
-    
-    
-    self.nullAllParam = function () {
-        fileCount = 0;
-        initialize(fPath);
-    };
-    
-      self.numOfFile = function () {
-        return fileCount;
-    }
 }

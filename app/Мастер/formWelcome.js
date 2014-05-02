@@ -69,20 +69,22 @@ function formWelcome() {
         if (click == 0) {
             self.btnBack.visible = false;
             self.btnNext.enabled = true;
+            FormInputFile.textFilePath.text = '';
             showPanel(click, panelArray);
         }
         else if (click == 1) {
-            form.resizable = false;
+         //   form.resizable = false;
             self.btnBack.visible = true;
-       //     self.btnNext.enabled = false;
+            self.btnNext.enabled = false;
+            toCheckFilePath(FormInputFile.textFilePath.text);
             showPanel(click, panelArray);
-           // toCheckFilePath(FormInputFile.textFilePath.text);
             FormInputFile.parent = self;
-        //    self.btnNext.enabled = true;
-            check = true;   
+            FormInputFile.separator.enabled = false;
+            //    self.btnNext.enabled = true;
+            check = true;
         }
         else if (click == 2) {
-            form.resizable = true;
+          //  form.resizable = true;
             self.btnNext.visible = true;
             showPanel(click, panelArray);
             FormSetting.toInitializeFile(self.filePath, FormInputFile.model.params.separatorID, check);
@@ -90,7 +92,7 @@ function formWelcome() {
         else if (click == 3) {
             showPanel(click, panelArray);
             check = false;
-            obj4Import = FormSetting.makeImpObj();         
+            obj4Import = FormSetting.makeImpObj();
             impModule = new ImportModule(self.filePath, self.separator, obj4Import, self.fileAPI);
             var obj = impModule.createImpArr();
             FormExtraSetting.impInfo(obj, obj4Import);
@@ -120,24 +122,11 @@ function formWelcome() {
     /*
      * если файл выбран то btnNext активна
      */
-    function toCheckFilePath(text, checkText) {
-    /*    if (text && checkText){
-            self.btnNext.enabled = true;}
-        else{
-            self.btnNext.enabled = false;}
-        else if (checkText == false) {
-            self.btnNext.enabled = true;}*/
-        
-        if(checkText) {
-            if(text)
-                self.btnNext.enabled = true;
-            else
-                self.btnNext.enabled = false;
-        }
-        else if(!checkText) {
+    function toCheckFilePath(text) {
+        if (text)
             self.btnNext.enabled = true;
-        }
-        
+        else
+            self.btnNext.enabled = false;
     }
 
     function btnNextActionPerformed(evt) {//GEN-FIRST:event_btnNextActionPerformed

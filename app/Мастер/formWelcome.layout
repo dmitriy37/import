@@ -1,21 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?><layout defaultCloseOperation="2" name="Form" prefHeight="447px" prefWidth="566px">
-  <widget name="panelWelcome" parent="Form" prefHeight="408px" prefWidth="567px" type="PanelDesignInfo">
+<?xml version="1.0" encoding="UTF-8"?><layout defaultCloseOperation="2" name="Form" prefHeight="500px" prefWidth="600px" resizable="false">
+  <widget name="panelWelcome" parent="Form" prefHeight="461px" prefWidth="601px" type="PanelDesignInfo">
     <layout type="MarginLayoutDesignInfo"/>
     <constraints bottom="39px" left="0px" right="-1px" top="0px" type="MarginConstraintsDesignInfo"/>
   </widget>
-  <widget name="panelInputFile" parent="Form" prefHeight="408px" prefWidth="567px" type="PanelDesignInfo" visible="false">
+  <widget name="panelInputFile" parent="Form" prefHeight="461px" prefWidth="601px" type="PanelDesignInfo" visible="false">
     <layout type="MarginLayoutDesignInfo"/>
     <constraints bottom="39px" left="0px" right="-1px" top="0px" type="MarginConstraintsDesignInfo"/>
   </widget>
-  <widget name="panelSetting" parent="Form" prefHeight="408px" prefWidth="567px" type="PanelDesignInfo" visible="false">
+  <widget name="panelSetting" parent="Form" prefHeight="461px" prefWidth="601px" type="PanelDesignInfo" visible="false">
     <layout type="MarginLayoutDesignInfo"/>
     <constraints bottom="39px" left="0px" right="-1px" top="0px" type="MarginConstraintsDesignInfo"/>
   </widget>
-  <widget name="panelExtraSetting" parent="Form" prefHeight="408px" prefWidth="567px" type="PanelDesignInfo" visible="false">
+  <widget name="panelExtraSetting" parent="Form" prefHeight="461px" prefWidth="601px" type="PanelDesignInfo" visible="false">
     <layout type="MarginLayoutDesignInfo"/>
     <constraints bottom="39px" left="0px" right="-1px" top="0px" type="MarginConstraintsDesignInfo"/>
   </widget>
-  <widget name="panelImportInfo" parent="Form" prefHeight="408px" prefWidth="567px" type="PanelDesignInfo" visible="false">
+  <widget name="panelImportInfo" parent="Form" prefHeight="461px" prefWidth="601px" type="PanelDesignInfo" visible="false">
     <layout type="MarginLayoutDesignInfo"/>
     <constraints bottom="39px" left="0px" right="-1px" top="0px" type="MarginConstraintsDesignInfo"/>
   </widget>

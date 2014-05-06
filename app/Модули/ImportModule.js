@@ -10,7 +10,8 @@ function ImportModule() {
         noSeparator : "Не задан разделитель",
         noMapping   : "Не указан тип сопоставления полей",
         noFile      : "Не выбран файл",
-        initError   : "Не удалось инициализаировать файл"
+        initError   : "Не удалось инициализаировать файл",
+        noProgress  : "Функция отображения прогресса не инициализирована"
     };
 
     /*
@@ -33,7 +34,7 @@ function ImportModule() {
     
     self.setProgressIndicatorValue = function() {};
     self.setProgressIndicatorMaxValue = function() {
-        Logger.warning('Функция отображения прогресса не инициализирована');
+        Logger.warning(errorDescription.noProgress);
     };
     
     self.import = function(aParams) {
@@ -92,7 +93,7 @@ function ImportModule() {
             return errCode;
         }
     }
-    
+    /* todo Изничтожить
     self.createImpArr = function() {
         var importArray = [];
 
@@ -118,7 +119,7 @@ function ImportModule() {
             }
         }
         return importArray;
-    };
+    };*/
     
     function startImport() {
         if (readyForImport) {

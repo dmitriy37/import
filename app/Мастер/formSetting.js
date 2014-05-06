@@ -25,8 +25,8 @@ function formSetting() {
     self.parent = null;
 
     var fPathq = 0
- 
-    
+
+
     /**
      * функция для отображения содержимого файла
      * @param {type} fPath - путь файла
@@ -34,7 +34,7 @@ function formSetting() {
      * @param {type} checkForm - проверяет форму, если переход сделан с предыдущей формы то true
      * @returns {undefined}
      */
-    self.toInitializeFile = function(fPath, fSeparator, checkForm) {  
+    self.toInitializeFile = function(fPath, fSeparator, checkForm) {
         fPathq = fPath;
         fileArray = fPath;
         model.separator.beforeFirst();
@@ -50,7 +50,7 @@ function formSetting() {
             API = new ImportAPI(fPath, fSeparator);
             workFile = API.openFile;
             self.parent.fileAPI = fPath;
-            if(workFile[0].getData.length > 0) {
+            if (workFile[0].getData.length > 0) {
                 showScrollFile(workFile[0].getData);
             }
         }
@@ -61,20 +61,20 @@ function formSetting() {
      * @returns {undefined}
      */
     function showScrollFile(array) {
-      model.readFile.first();
-      for(var i in array) {
-          if (model.readFile.length > i) {
+        model.readFile.first();
+        for (var i in array) {
+            if (model.readFile.length > i) {
                 model.readFile.cellData = array[i].cellData;
                 model.readFile.next();
             } else
                 model.readFile.insert(model.readFile.schema.cellNum, array[i].cellNum + 1,
-                                      model.readFile.schema.cellData, array[i].cellData);
-      }
-      if(array.length < model.readFile.length) {
-                              model.readFile.cellData = '';
-                    model.readFile.next();
-          
-      }
+                        model.readFile.schema.cellData, array[i].cellData);
+        }
+        if (array.length < model.readFile.length) {
+            model.readFile.cellData = '';
+            model.readFile.next();
+
+        }
     }
 
     /**
@@ -82,29 +82,30 @@ function formSetting() {
      * @returns {undefined}
      */
     function toShowVariant() {
-    model.readFile.beforeFirst();
+
+        model.readFile.beforeFirst();
         while (model.readFile.next()) {
             model.readFile.mappingId = '';
         }
         model.readFile.last();
         model.addImpVariant.last();
-        var cellsCount = model.addImpVariant.CELLNUMBER;
+        var cellsCount = model.addImpVariant.cellnumber;
         var lastCell = model.readFile.cellNum + 1;
         model.addImpVariant.first();
-        if(model.addImpVariant.length > model.readFile.length){
-        for(var i = lastCell ; i <= cellsCount ; i++) {
-            model.readFile.insert(model.readFile.schema.cellNum, i);
-        }
-    }
-        model.readFile.beforeFirst();
-            while (model.readFile.next()) {
-                if(model.readFile.cellNum == model.addImpVariant.CELLNUMBER) {
-                    model.readFile.mappingId = model.addImpVariant.MAPPINGCATALOG_ID;
-                    model.addImpVariant.next();
-                }
+        if (model.addImpVariant.length > model.readFile.length) {
+            for (var i = lastCell; i <= cellsCount; i++) {
+                model.readFile.insert(model.readFile.schema.cellNum, i);
             }
-            model.addImpVariant.beforeFirst();
         }
+        model.readFile.beforeFirst();
+        while (model.readFile.next()) {
+            if (model.readFile.cellNum == model.addImpVariant.cellnumber) {
+                model.readFile.mappingId = model.addImpVariant.mappingcatalog_id;
+                model.addImpVariant.next();
+            }
+        }
+        model.addImpVariant.beforeFirst();
+    }
 
 
     /**
@@ -118,13 +119,9 @@ function formSetting() {
         while (model.readFile.next()) {
             if (model.readFile.mappingId) {
                 var mappingId = model.readFile.mappingId;
-                model.editMapping.scrollTo(model.editMapping.findById(mappingId));
-                var mappingTitle = model.editMapping.CODER_TITLE;
-                var cellNum = model.readFile.cellNum - 1;
-                var isArr = model.readFile.isArray;
-                res[i] = {mapping: mappingTitle,
-                    cellNumber: cellNum,
-                    isArray: isArr};
+                res[i] = {  mapping: model.editMapping.findById(mappingId).coder_title,
+                            cellNumber: model.readFile.cellNum - 1,
+                            isArray: model.readFile.isArray};
                 i++;
             }
         }
@@ -166,46 +163,49 @@ function formSetting() {
          * для сохранения нового варианта импорта ( добавить перезапись текущего варианта )
          */
         model.readFile.beforeFirst();
-        while(model.readFile.next()) {
-            if(model.readFile.mappingId) {
+        while (model.readFile.next()) {
+            if (model.readFile.mappingId) {
                 var chekMapping = true;
                 break;
             }
-            else chekMapping = false;
+            else
+                chekMapping = false;
         }
-        if(chekMapping) {
+        if (chekMapping) {
             var msg = prompt('Введите название варианта импорта', '', 'Внимание');
-            if(msg) {
+            if (msg) {
                 model.addImport.beforeFirst();
-                while(model.addImport.next()) {
-                    if(model.addImport.TITLE == msg) {
+                while (model.addImport.next()) {
+                    if (model.addImport.TITLE == msg) {
                         var reWrire = true;
                         var idVarImp = model.addImport.IMP_IMPCATALOG_ID;
                         break;
                     }
-                    else reWrire = false;
+                    else
+                        reWrire = false;
                 }
-                if(reWrire) {
+                if (reWrire) {
                     var idMap = idVarImp;
                     model.addImpVariant.params.ImpVariant_ID = idVarImp;
                     model.addImpVariant.deleteAll();
                 }
                 else {
-                    model.addImport.insert(model.addImport.schema.TITLE,msg);
+                    model.addImport.insert(model.addImport.schema.TITLE, msg);
                     idMap = model.addImport.IMP_IMPCATALOG_ID;
-           }
+                }
                 model.readFile.beforeFirst();
                 model.addImpVariant.last();
                 while (model.readFile.next()) {
-                        model.addImpVariant.insert(model.addImpVariant.schema.CELLNUMBER,model.readFile.cellNum,
-                        model.addImpVariant.schema.ID_CATALOGOFIMP,idMap,
-                        model.addImpVariant.schema.MAPPINGCATALOG_ID,model.readFile.mappingId);
+                    model.addImpVariant.insert(model.addImpVariant.schema.CELLNUMBER, model.readFile.cellNum,
+                            model.addImpVariant.schema.ID_CATALOGOFIMP, idMap,
+                            model.addImpVariant.schema.MAPPINGCATALOG_ID, model.readFile.mappingId);
                 }
                 model.save();
                 model.requery();
             }
         }
-        else alert("Выберите тип сопоставления", 'Внимание');
+        else
+            alert("Выберите тип сопоставления", 'Внимание');
     }//GEN-LAST:event_btnSaveImpVarActionPerformed
 
     function btnDownActionPerformed(evt) {//GEN-FIRST:event_btnDownActionPerformed
@@ -213,13 +213,13 @@ function formSetting() {
          * скролл вниз
          */
         var dataObj = workFile[fileCount].getNext();
-        if(dataObj){
+        if (dataObj) {
             showScrollFile(dataObj);
         }
     }//GEN-LAST:event_btnDownActionPerformed
 
     function btnRightActionPerformed(evt) {//GEN-FIRST:event_btnRightActionPerformed
-        if(fileCount < workFile.length - 1) {         
+        if (fileCount < workFile.length - 1) {
             fileCount++;
             workFile[fileCount].setCursor(0);
             showScrollFile(workFile[fileCount].getData);
@@ -228,7 +228,7 @@ function formSetting() {
     }//GEN-LAST:event_btnRightActionPerformed
 
     function btnLeftActionPerformed(evt) {//GEN-FIRST:event_btnLeftActionPerformed
-        if(fileCount > 0) {
+        if (fileCount > 0) {
             fileCount--;
             workFile[fileCount].setCursor(0);
             showScrollFile(workFile[fileCount].getData);
@@ -242,5 +242,6 @@ function formSetting() {
 
     function paramsOnChanged(evt) {//GEN-FIRST:event_paramsOnChanged
         toShowVariant();
+       
     }//GEN-LAST:event_paramsOnChanged
 }

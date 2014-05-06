@@ -12,15 +12,14 @@ function readTXT(aPath, aSeparator) {
     var fis = null;
     var scanner = null;
     var count = 0;
-    var fileCount = 0;
-    var fileNum = 0;  
+    var rowsCount = 0;
     
     
     
     initialize(fPath);
     self.getData = getData();
     
-        function initialize(fPath) {
+    function initialize(fPath) {
         fis = new java.io.FileInputStream(fPath);
         scanner = new java.util.Scanner(fis);
     }
@@ -34,10 +33,11 @@ function readTXT(aPath, aSeparator) {
                 string = scanner.nextLine();
                 string = string.split(separator);
                 if (string.length > 1) {
-                    fileCount++;
+                    rowsCount++;
                     count++;
                     if (string.length > 1) {
                         for (var i = 0; i < string.length; i++) {
+                            /*to do Читать только нужные ячейки, если задан их список*/
                             stringArray[i] = {cellNum: i, cellData: string[i]};
                         }
                         readFileArray.push(stringArray);
@@ -52,14 +52,14 @@ function readTXT(aPath, aSeparator) {
     }
     
     self.getCursor = function () {
-        if(count < fileCount - 1)
+        if(count < rowsCount - 1)
             return count;
         else
-            return fileCount;
+            return rowsCount;
     };
     
     self.setCursor = function (num) {
-        if(count < fileCount - 1)
+        if(count < rowsCount - 1)
             count = num;
     };
     
@@ -68,9 +68,9 @@ function readTXT(aPath, aSeparator) {
     self.getNext = function () {
         if(readFileArray.length == 10) {
             readFileArray.shift();
-            fileCount--;
+            rowsCount--;
         }
-        if (count < fileCount - 1) {            
+        if (count < rowsCount - 1) {            
             count++;
             return readFileArray[count];            
         }
@@ -118,7 +118,7 @@ function readTXT(aPath, aSeparator) {
     self.nullAllParam = function () {
         readFileArray.length = 0;
         fileNum = 0;
-        fileCount = 0;
+        rowsCount = 0;
     };
     
     self.getLast = function () {

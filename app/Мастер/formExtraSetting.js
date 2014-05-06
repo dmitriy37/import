@@ -6,7 +6,6 @@ function formExtraSetting() {
     var self = this, model = this.model, form = this;
 
     self.impInfo = function(impArray, obj4Import) {
-        self.textArea.text = '';
         self.textArea.text = 'Mapping Type' + '                       ' + 'Value' + '\n';
         for (var i = 0; i < impArray.length; i++) {
             if (impArray[i][obj4Import[i].mapping].length == undefined) {
@@ -25,7 +24,7 @@ function formExtraSetting() {
         aImpModule.setProgressIndicatorValue = function(aValue) {
             try {
                 //Многопоточный режим
-                (function(){form.progressBar.value = aValue;}).invokeDelayed();
+                (function(){form.progressBar.value = aValue;}).invokeAndWait();
             } catch (e) {
                 form.progressBar.value = aValue;
             }
@@ -33,7 +32,7 @@ function formExtraSetting() {
         aImpModule.setProgressIndicatorMaxValue = function(aMaximum) {
             try {
                 //Многопоточный режим
-                (function(){form.progressBar.maximum = aMaximum;}).invokeDelayed();
+                (function(){form.progressBar.maximum = aMaximum;}).invokeAndWait();
             } catch (e) {
                 form.progressBar.maximum = aMaximum;
             }

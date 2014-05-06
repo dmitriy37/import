@@ -128,7 +128,7 @@ function ImportModule() {
                 var filesCount = files.length;
                 for (var i = 0; i < filesCount && !stop; i++){
                     if (readFilesMultithread) {
-                        (function(){processSingleFile(path + "\/" + files[i]);}).invokeBackGround()
+                        (function(){processSingleFile(path + "\/" + files[i]);}).invokeBackGround();
                     } else {
                         processSingleFile(path + "\/" + files[i]);
                     }

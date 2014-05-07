@@ -16,18 +16,16 @@ function readXLS(aPath) {
     var fileCount = 0;
     var rowCount = 0;
     var sheetCount = 0;
+    var selectedFields = null;
   
   
 
 
 
-    initialize(fPath);
-    self.getData = getData();
-    self.getLast = getLast;
- 
+    initializeFile(fPath);
+    
 
-
-    function initialize(filePath) { 
+    function initializeFile(filePath) { 
         fis = new java.io.FileInputStream(filePath);
         wb = new org.apache.poi.hssf.usermodel.HSSFWorkbook(fis);
     }
@@ -40,24 +38,31 @@ function readXLS(aPath) {
         return rowCount;
     }
     
-     function getData() {      
+     self.getData = function () {  
         var readFileArray = [];
         sheet = wb.getSheetAt(0);
         row = sheet.getRow(rowCount);
-        for (var j = 0; j < row.getLastCellNum(); j++) {
-            readFileArray[j] = {cellNum: j, cellData: row.getCell(j)};
+        if(selectedFields) {
+            for(var i in selectedFields) {
+                readFileArray[i] = {cellNumber:j, cellData: row.getCell(selectedFields[i])};
+            }
         }
+        else {
+        for (var j = 0; j < row.getLastCellNum(); j++) {
+            readFileArray[j] = {cellNumber: j, cellData: row.getCell(j)};
+        }
+    }
         return  readFileArray;
     };
 
     self.getFirst = function () {
         rowCount = 0;
-        return getData();
+        return self.getData();
     }
 
      function getLast() {
         rowCount = sheet.getPhysicalNumberOfRows() - 1;
-        return getData();
+        return self.getData();
     }
 
     self.getLength = function () {
@@ -70,14 +75,19 @@ function readXLS(aPath) {
     self.getNext = function() {
         if (rowCount < self.getLength() - 1) {
             rowCount++;
-            return getData();
+            return self.getData();
         }
     };
 
     self.getPrev = function() {
         if (rowCount > 0) {
             rowCount--;
-            return getData();
+            return self.getData();
         }
     };
+    
+    self.setSelectedFields = function (aFields) {
+        selectedFields = aFields;
+    };
+    
 }

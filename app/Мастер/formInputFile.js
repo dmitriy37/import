@@ -24,6 +24,7 @@ function formInputFile(check) {
 
         if (result == FILE_CHOOSER.APPROVE_OPTION) {
             var selectedFile = chooser.getSelectedFile();
+               self.parent.fPath = selectedFile;
             if (selectedFile.isDirectory()) {
                 var path = selectedFile.path;
                 var files = new java.io.File(selectedFile).list();
@@ -47,6 +48,7 @@ function formInputFile(check) {
                 }
                 self.textFilePath.text = path;
                 self.parent.filePath = getFilePath;
+             
             }
             else {
                 var getFilePath = [];

@@ -10,6 +10,6 @@
   <entity Name="readFile" Title="" entityHeight="200" entityIconified="false" entityId="139679265111265" entityLocationX="658" entityLocationY="250" entityWidth="150" queryId="readFile" tableName="" tableSchemaName=""/>
   <entity Name="addImpVariant" Title="" entityHeight="200" entityIconified="false" entityId="139679266558374" entityLocationX="644" entityLocationY="26" entityWidth="150" queryId="addImpVariant" tableName="" tableSchemaName=""/>
   <relation leftEntityId="-1" leftEntityParameterName="ImpVariant_ID" rightEntityId="139679266558374" rightEntityParameterName="ImpVariant_ID"/>
-  <referenceRelation leftEntityFieldName="mappingcatalog_id" leftEntityId="139679266558374" rightEntityFieldName="imp_mappingcatalog_id" rightEntityId="139679265275957"/>
-  <referenceRelation leftEntityFieldName="id_catalogofimp" leftEntityId="139679266558374" rightEntityFieldName="imp_impcatalog_id" rightEntityId="139679266751991"/>
+  <referenceRelation leftEntityFieldName="MAPPINGCATALOG_ID" leftEntityId="139679266558374" rightEntityFieldName="IMP_MAPPINGCATALOG_ID" rightEntityId="139679265275957"/>
+  <referenceRelation leftEntityFieldName="ID_CATALOGOFIMP" leftEntityId="139679266558374" rightEntityFieldName="IMP_IMPCATALOG_ID" rightEntityId="139679266751991"/>
 </datamodel>

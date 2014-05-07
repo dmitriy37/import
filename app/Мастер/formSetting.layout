@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><layout defaultCloseOperation="2" name="Form" prefHeight="500px" prefWidth="600px" resizable="false">
   <widget name="modelGrid" parent="Form" prefHeight="423px" prefWidth="598px" type="DbGridDesignInfo">
-    <treeDesignInfo/>
+    <rowsColumnsDesignInfo>
+      <rowsDatasource entityId="139679265111265" field="false"/>
+    </rowsColumnsDesignInfo>
     <column name="Номер">
       <controlInfo classHint="DbLabelDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
+      <columnsDisplayField/>
       <datamodelElement entityId="139679265111265" fieldName="cellNum"/>
       <columnsDatasource/>
       <cellsDatasource/>
@@ -14,10 +17,10 @@
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
-      <columnsDisplayField/>
     </column>
     <column name="Данные">
       <controlInfo classHint="DbLabelDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
+      <columnsDisplayField/>
       <datamodelElement entityId="139679265111265" fieldName="cellData"/>
       <columnsDatasource/>
       <cellsDatasource/>
@@ -29,13 +32,13 @@
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
-      <columnsDisplayField/>
     </column>
     <column cellFunction="MappingTypeOnRender" name="MappingType" title="Тип сопоставления&#10;">
       <controlInfo classHint="DbComboDesignInfo" name="view" prefHeight="0px" prefWidth="0px">
         <valueField entityId="139679265275957" fieldName="IMP_MAPPINGCATALOG_ID"/>
         <displayField entityId="139679265275957" fieldName="USER_TITLE"/>
       </controlInfo>
+      <columnsDisplayField/>
       <datamodelElement entityId="139679265111265" fieldName="mappingId"/>
       <columnsDatasource/>
       <cellsDatasource/>
@@ -47,10 +50,10 @@
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
-      <columnsDisplayField/>
     </column>
     <column name="Доп. параметры">
       <controlInfo classHint="DbLabelDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
+      <columnsDisplayField/>
       <columnsDatasource/>
       <cellsDatasource/>
       <cellDesignInfo>
@@ -61,10 +64,10 @@
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
-      <columnsDisplayField/>
     </column>
     <column name="Порядок">
       <controlInfo classHint="DbLabelDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
+      <columnsDisplayField/>
       <columnsDatasource/>
       <cellsDatasource/>
       <cellDesignInfo>
@@ -75,10 +78,10 @@
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
-      <columnsDisplayField/>
     </column>
     <column name="Массив">
       <controlInfo classHint="DbCheckDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
+      <columnsDisplayField/>
       <datamodelElement entityId="139679265111265" fieldName="isArray"/>
       <columnsDatasource/>
       <cellsDatasource/>
@@ -90,11 +93,8 @@
       <headerStyle>
         <nativeFont name="Tahoma" size="11"/>
       </headerStyle>
-      <columnsDisplayField/>
     </column>
-    <rowsColumnsDesignInfo>
-      <rowsDatasource entityId="139679265111265" field="false"/>
-    </rowsColumnsDesignInfo>
+    <treeDesignInfo/>
     <constraints bottom="5px" left="0px" right="2px" top="72px" type="MarginConstraintsDesignInfo"/>
   </widget>
   <widget floatable="false" name="toolBar1" parent="Form" prefHeight="24px" prefWidth="602px" rollover="true" type="ToolbarDesignInfo">

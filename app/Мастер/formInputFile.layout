@@ -1,27 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?><layout defaultCloseOperation="2" name="Form" prefHeight="352px" prefWidth="600px" resizable="false">
-  <widget actionPerformed="btnOpenActionPerformed" name="btnOpen" parent="Form" prefHeight="23px" prefWidth="108px" text="Выбрать" type="ButtonDesignInfo">
-    <constraints height="23px" right="24px" top="96px" type="MarginConstraintsDesignInfo" width="108px"/>
+<?xml version="1.0" encoding="UTF-8"?><layout defaultCloseOperation="2" name="Form" prefHeight="501px" prefWidth="600px" resizable="false">
+  <widget actionPerformed="btnOpenActionPerformed" icon="icons/actions/add-files-to-archive.png" name="btnOpen" parent="Form" prefHeight="23px" prefWidth="108px" text="Выбрать" type="ButtonDesignInfo">
+    <constraints height="23px" right="20px" top="36px" type="MarginConstraintsDesignInfo" width="108px"/>
   </widget>
-  <widget editable="false" name="textFilePath" parent="Form" prefHeight="20px" prefWidth="316px" type="TextFieldDesignInfo">
-    <constraints height="20px" right="20px" top="69px" type="MarginConstraintsDesignInfo" width="316px"/>
+  <widget editable="false" name="textFilePath" parent="Form" prefHeight="20px" prefWidth="120px" type="TextFieldDesignInfo">
+    <constraints height="20px" right="20px" top="84px" type="MarginConstraintsDesignInfo" width="120px"/>
   </widget>
-  <widget name="label1" parent="Form" prefHeight="24px" prefWidth="168px" text="Выберите разделитель" type="LabelDesignInfo">
-    <constraints height="24px" left="264px" top="124px" type="MarginConstraintsDesignInfo" width="168px"/>
+  <widget name="label" parent="Form" prefHeight="14px" prefWidth="96px" text="Выбрать файл" type="LabelDesignInfo">
+    <constraints height="14px" right="216px" top="36px" type="MarginConstraintsDesignInfo" width="96px"/>
   </widget>
-  <widget name="separator" parent="Form" prefHeight="20px" prefWidth="160px" type="DbComboDesignInfo">
-    <displayField entityId="139688404193011" fieldName="SEPARATOR"/>
+  <widget name="label1" parent="Form" prefHeight="24px" prefWidth="132px" text="Выберите разделитель" type="LabelDesignInfo">
+    <constraints height="24px" right="180px" top="132px" type="MarginConstraintsDesignInfo" width="132px"/>
+  </widget>
+  <widget name="separator" parent="Form" prefHeight="20px" prefWidth="108px" type="DbComboDesignInfo">
     <valueField entityId="139688404193011" fieldName="IMP_SEPARATOR_ID"/>
+    <displayField entityId="139688404193011" fieldName="SEPARATOR"/>
     <datamodelElement entityId="-1" fieldName="separatorID"/>
-    <constraints height="20px" right="20px" top="126px" type="MarginConstraintsDesignInfo" width="160px"/>
+    <constraints height="20px" right="20px" top="132px" type="MarginConstraintsDesignInfo" width="108px"/>
   </widget>
-  <widget name="filePath" parent="Form" prefHeight="14px" prefWidth="156px" text="Путь файла / каталога" type="LabelDesignInfo">
-    <constraints height="14px" left="264px" top="48px" type="MarginConstraintsDesignInfo" width="156px"/>
-  </widget>
-  <widget name="lblFileCount" parent="Form" prefHeight="16px" prefWidth="108px" text="Всего файлов:" type="LabelDesignInfo">
-    <constraints height="16px" left="264px" top="96px" type="MarginConstraintsDesignInfo" width="108px"/>
-  </widget>
-  <widget name="label2" parent="Form" prefHeight="16px" prefWidth="38px" text="#" type="LabelDesignInfo">
-    <constraints height="16px" left="360px" top="96px" type="MarginConstraintsDesignInfo" width="38px"/>
+  <widget name="filePath" parent="Form" prefHeight="14px" prefWidth="132px" text="Путь файла / каталога" type="LabelDesignInfo">
+    <constraints height="14px" right="180px" top="84px" type="MarginConstraintsDesignInfo" width="132px"/>
   </widget>
   <layout type="MarginLayoutDesignInfo"/>
 </layout>

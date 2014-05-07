@@ -23,6 +23,9 @@ function formWelcome() {
     self.separator = null;
     self.checkText = null;
     self.fileAPI = null;
+    
+    
+    self.fPath = null;
 
 
     /* FormInputFile.parent - доступ к форме выбора файла
@@ -93,9 +96,15 @@ function formWelcome() {
             showPanel(click, panelArray);
             check = false;
             obj4Import = FormSetting.makeImpObj();
-            impModule = new ImportModule(self.filePath, self.separator, obj4Import, self.fileAPI);
-            var obj = impModule.createImpArr();
-            FormExtraSetting.impInfo(obj, obj4Import);
+           // impModule = new ImportModule(self.filePath, self.separator, obj4Import, self.fileAPI);
+           // var obj = impModule.createImpArr();
+           impModule = new ImportModule();
+           impModule.setPath(self.fPath);
+           impModule.setMappingObj(obj4Import);
+           impModule.setSeparator(self.separator);
+           impModule.import();
+           
+          //  FormExtraSetting.impInfo(obj, obj4Import);
         }
         else if (click == 4) {
             showPanel(click, panelArray);

@@ -44,7 +44,7 @@ function readXLS(aPath) {
         row = sheet.getRow(rowCount);
         if(selectedFields) {
             for(var i in selectedFields) {
-                readFileArray[i] = {cellNumber:j, cellData: row.getCell(selectedFields[i])};
+                readFileArray[i] = {cellNumber:j, cellData: row.getCell(i)};
             }
         }
         else {

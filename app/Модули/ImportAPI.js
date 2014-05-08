@@ -16,10 +16,7 @@ function ImportAPI(filePath, separator) {
     
     
     self.openFile = initializeFile(fPath, fSeparator);
-    self.setProgressIndicatorValue = function() {};
-    self.setProgressIndicatorMaxValue = function() {
-        Logger.warning('Функция отображения прогресса не инициализирована');
-    };
+
     
     
     function initializeFile(filePath, separator) {

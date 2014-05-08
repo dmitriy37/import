@@ -36,7 +36,7 @@ function readXLSX(aPath) {
         row = sheet.getRow(rowCount);
         if (selectedFields) {
             for (var i in selectedFields) {
-                readFileArray[i] = {cellNumber: j, cellData: row.getCell(selectedFields[i])};
+                readFileArray[i] = {cellNumber: j, cellData: row.getCell(i)};
             }
         }
         for (var j = 0; j < row.getLastCellNum(); j++) {

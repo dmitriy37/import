@@ -2,6 +2,9 @@
  * 
  * @author Dmitriy
  * @module
+ * @param {type} aPath - путь к читаемому файлу
+ * @param {type} aSeparator - разделитель
+ * @returns {undefined}
  */
 function readTXT(aPath, aSeparator) {
     var self = this, model = this.model;
@@ -40,7 +43,7 @@ function readTXT(aPath, aSeparator) {
                     if (string.length > 1) {
                         if (selectedFields) {
                             for (var i in selectedFields) {
-                                stringArray[i] = {cellNumber: i, cellData: string[selectedFields[i]]};
+                                stringArray[i] = {cellNumber: i, cellData: string[i]};
                             }
                         }
                         else {
@@ -57,7 +60,7 @@ function readTXT(aPath, aSeparator) {
         }
         else
             return null;
-    }
+    };
 
     self.getCursor = function() {
         if (count < rowCount - 1)
@@ -74,7 +77,7 @@ function readTXT(aPath, aSeparator) {
 
 
     self.getNext = function() {
-        if (readFileArray.length == 10) {
+        if (readFileArray.length === 10) {
             readFileArray.shift();
             rowCount--;
         }
@@ -152,5 +155,5 @@ function readTXT(aPath, aSeparator) {
 
     self.setSelectedFields = function(aFields) {
         selectedFields = aFields;
-    }
+    };
 }

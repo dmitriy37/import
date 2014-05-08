@@ -19,7 +19,7 @@ function ImportModule() {
     var checkImpParams = {
         path: false,
         separator: false,
-        mappingId: false
+        mapping: false
     };
     
     
@@ -31,6 +31,7 @@ function ImportModule() {
     var readByRow = true;
     var readFilesMultithread = false;
     var processRowsMultithread = false;
+    var progress = false;
 
     var separator = '';
     var fieldsObj = null;
@@ -38,36 +39,44 @@ function ImportModule() {
     var path = '';
     var fileCount = null;
 
+    self.setProgressIndicatorValue = function() {};
+    self.setProgressIndicatorMaxValue = function() {
+        Logger.warning('Функция отображения прогресса не инициализирована');
+    };
 
     self.setPath = function(aPath) {
-        try {
-            if (aPath.isDirectory()) {
-                path = aPath;
-                isDirectory = true;
+        if (aPath) {
+            try {
                 checkImpParams.path = true;
-                checkSameFiles(aPath);
+                if (aPath.isDirectory()) {
+                    path = aPath;
+                    isDirectory = true;
+                    checkSameFiles(aPath);
+                }
+                else {
+                    path = aPath;
+                    isDirectory = false;
+                }
+            } catch (e) {
+                Logger.warning(errorDescription.noFile + '  ' + e);
+                alert('Не выбран файл');
+                checkImpParams.path = false;
+                alert(aPath);
             }
-            else {
-                path = aPath;
-                isDirectory = false;
-                checkImpParams.path = true;
-            }
-        } catch (e) {
-            Logger.warning(errorDescription.noFile + '  ' + e);
-            alert('Не выбран файл');
-            alert(aPath);
+        } else {
+            checkImpParams.path = false;
         }
     };
     
     self.setSeparator = function (aSeparator) {
         separator = aSeparator;
         checkImpParams.separator = true;
-    }
+    };
 
     self.setMappingId = function(aMappingId) {
         try {
             mappingId = aMappingId;
-            checkImpParams.mappingId = true;
+            checkImpParams.mapping = true;
         }
         catch (e) {
             Logger.error(errorDescription.noMapping + '  ' + e);
@@ -78,7 +87,7 @@ function ImportModule() {
     self.setMappingObj = function(aMappingObj) {
         try {
             fieldsObj = aMappingObj;
-            checkImpParams.mappingId = true;
+            checkImpParams.mapping = true;
         }
         catch (e) {
             Logger.error(errorDescription.noMappingObj + '  ' + e);
@@ -121,7 +130,7 @@ function ImportModule() {
         }
     }
 
-    self.import = function() {
+    self.import = function(aImportParams) {
         for (var i in checkImpParams) {
             if (checkImpParams[i] != true) {
                 readyForImport = false;
@@ -163,7 +172,7 @@ function ImportModule() {
     }
 
     function processSingleFile(aFilePath) {
-        var mas = [];
+        var cellsForRead = [];
         var ext = aFilePath.substring(aFilePath.lastIndexOf(".") + 1);
         var fileReader = null;
         switch (ext) {
@@ -178,161 +187,47 @@ function ImportModule() {
                 break;
         }
         for (var i in fieldsObj) {
-            mas[i] = fieldsObj[i].cellNumber;
+            cellsForRead[fieldsObj[i].cellNumber] = true;
         }
-        fileReader.setSelectedFields(mas)
+        fileReader.setSelectedFields(cellsForRead);
         readRows(fileReader);
     }
 
     function readRows(aFileReader) {
-        var data = aFileReader.getData();
-        for (var i = 0; i < aFileReader.getLength(); i++) {
+       /* for (var i = 0; i < aFileReader.getLength(); i++) {
             importFunction(data);
             data = aFileReader.getNext();
+        }*/
+        var rowData = null; 
+        var allData = [];
+        aFileReader.beforeFirst();
+        while (aFileReader.getNext()) {
+            rowData = mapData(aFileReader.getData());
+            if (readByRow) {
+                if (processRowsMultithread) {
+                    (function(){importFunction(rowData);}).invokeBackground();
+                } else {
+                    importFunction(rowData);
+                }
+            } else {
+                allData.push(rowData);
+            }
+        }
+        if (!processRowsMultithread) {
+            importFunction(allData);
         }
     }
 
-    function importFunction(aData) {
+    function mapData(aDataRow) {
         var impMas = [];
         for(var j in fieldsObj) {
             impMas[j] = new Array();
         }
-        for(var i = 0 ; i < aData.length ; i++) {
-            impMas[i][fieldsObj[i].mapping] = aData[i].cellData;
+        for(var i = 0 ; i < aDataRow.length ; i++) {
+            impMas[i][fieldsObj[i].mapping] = aDataRow[i].cellData;
           //  alert(impMas[i][fieldsObj[i].mapping]);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    var API = new ImportAPI(workFileAPI, aSeparator);
-//    var workFileAPI = API.openFile;
-//    var fPath = aPath;
-//    var fSeparator = aSeparator;
-//    var fObj4Import = aObj4Import;
-//    var fileAPI = workFileAPI;
-//    
-//    self.createImpArr = function () {
-//
-//   
-//        
-//        var importArray = [];
-//        
-//        for(var i = 0 ; i < fObj4Import.length ; i++) {
-//            importArray[i] = new Array();
-//        }
-//        
-//        for(var i = 0 ; i < fObj4Import.length ; i++) {
-//            if(fObj4Import[i].isArray)
-//                importArray[i][fObj4Import[i].mapping] = new Array();
-//        }
-//        
-//        
-//        
-//        for(var i = 0 ; i < fileAPI.length ; i++) {
-//            var  data = fileAPI[i].getData;
-//            for(var k = 0 ; k < fileAPI[i].getLength() ; k++) {                
-//            for(var j = 0 ; j < fObj4Import.length ; j++) {
-//               if(fObj4Import[j].isArray == null) {
-//                   importArray[j][fObj4Import[j].mapping] = data[fObj4Import[j].cellNumber].cellData;
-//               }
-//               else {
-//                   var buf = data[fObj4Import[j].cellNumber].cellData;
-//                   importArray[j][fObj4Import[j].mapping].push(buf);
-//               }
-//            }
-//            data = fileAPI[i].getNext();
-//        }
-//     
-// 
-//        }      
-//        return importArray;
-//        
-//        
-//    
-//        
-
-//        
-//        
-//        
-//        for(var i = 0 ; i < fPath.length ; i++) {
-//            var  data = fileAPI.getFirst();
-//            for(var k = 0 ; k < fileAPI.getLength() ; k++) {                
-//            for(var j = 0 ; j < fObj4Import.length ; j++) {
-//               if(fObj4Import[j].isArray == null) {
-//                   importArray[j][fObj4Import[j].mapping] = data[fObj4Import[j].cellNumber].cellData;
-//               }
-//               else {
-//                   importArray[j][fObj4Import[j].mapping][k] = data[fObj4Import[j].cellNumber].cellData;
-//               }
-//            }
-//            data = fileAPI.getNext();
-//        }
-//        fileAPI.getNextFile();
-// 
-//        }      
-//        return importArray;
 }
 ;
 

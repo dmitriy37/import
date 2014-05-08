@@ -5,8 +5,8 @@
  */
 function readXLSX(aPath) {
     var self = this, model = this.model;
-    
-    
+
+
     var fPath = aPath;
     var fis = null;
     var OPCPack = null;
@@ -17,47 +17,53 @@ function readXLSX(aPath) {
     var fileCount = 0;
     var rowCount = 0;
     var sheetCount = 0;
-    
-    
+    var selectedFields = null;
+
+
     initialize(fPath);
     self.getData = getData();
     self.getLast = getLast;
-    
-    function initialize(filePath) {        
+
+    function initialize(filePath) {
         fis = new java.io.FileInputStream(filePath);
         OPCPack = new org.apache.poi.openxml4j.opc.OPCPackage.open(fis);
         wb = new org.apache.poi.xssf.usermodel.XSSFWorkbook(OPCPack);
     }
-    
-    function getData() {      
+
+    function getData() {
         var readFileArray = [];
         sheet = wb.getSheetAt(0);
         row = sheet.getRow(rowCount);
+        if (selectedFields) {
+            for (var i in selectedFields) {
+                readFileArray[i] = {cellNumber: j, cellData: row.getCell(selectedFields[i])};
+            }
+        }
         for (var j = 0; j < row.getLastCellNum(); j++) {
             readFileArray[j] = {cellNumber: j, cellData: row.getCell(j)};
         }
         return  readFileArray;
     }
 
-    self.getFirst = function () {
+    self.getFirst = function() {
         rowCount = 0;
         return getData();
     };
-    
-    self.getCursor = function () {
+
+    self.getCursor = function() {
         return rowCount;
     };
-    
-    self.setCursor = function (num) {
+
+    self.setCursor = function(num) {
         rowCount = num;
     };
 
-     function getLast() {
+    function getLast() {
         rowCount = sheet.getPhysicalNumberOfRows() - 1;
         return getData();
     }
 
-    self.getLength = function () {
+    self.getLength = function() {
         var sheet = wb.getSheetAt(0);
         var rows = sheet.getPhysicalNumberOfRows();
         return rows;
@@ -76,6 +82,10 @@ function readXLSX(aPath) {
             rowCount--;
             return getData();
         }
+    };
+
+    self.setSelectedFields = function(aFields) {
+        selectedFields = aFields;
     };
 }
 

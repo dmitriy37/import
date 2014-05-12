@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><layout defaultCloseOperation="2" name="Form" prefHeight="202px" prefWidth="395px" resizable="false">
+  <widget actionPerformed="btnExitActionPerformed" name="btnExit" parent="Form" prefHeight="23px" prefWidth="89px" text="Выход" type="ButtonDesignInfo">
+    <constraints bottom="8px" height="23px" right="6px" type="MarginConstraintsDesignInfo" width="89px"/>
+  </widget>
+  <widget name="modelGrid" parent="Form" prefHeight="120px" prefWidth="396px" type="DbGridDesignInfo">
+    <treeDesignInfo/>
+    <rowsColumnsDesignInfo>
+      <rowsDatasource entityId="139690614080740" field="false"/>
+    </rowsColumnsDesignInfo>
+    <column name="Разделитель">
+      <controlInfo classHint="DbLabelDesignInfo" name="view" prefHeight="0px" prefWidth="0px"/>
+      <columnsDisplayField/>
+      <datamodelElement entityId="139690614080740" fieldName="SEPARATOR"/>
+      <columnsDatasource/>
+      <cellsDatasource/>
+      <cellDesignInfo>
+        <rowsKeyField/>
+        <columnsKeyField/>
+        <cellValueField/>
+      </cellDesignInfo>
+      <headerStyle>
+        <nativeFont name="Tahoma" size="11"/>
+      </headerStyle>
+    </column>
+    <constraints height="120px" left="0px" right="-1px" top="36px" type="MarginConstraintsDesignInfo"/>
+  </widget>
+  <widget floatable="false" name="toolBar" parent="Form" prefHeight="25px" prefWidth="396px" rollover="true" type="ToolbarDesignInfo">
+    <constraints height="25px" left="0px" right="-1px" top="0px" type="MarginConstraintsDesignInfo"/>
+  </widget>
+  <widget actionPerformed="btnAddActionPerformed" icon="icons/actions/list-add.png" name="btnAdd" parent="toolBar" prefHeight="23px" prefWidth="29px" type="ButtonDesignInfo"/>
+  <widget name="textSeparate" parent="toolBar" prefHeight="23px" prefWidth="336px" type="TextFieldDesignInfo"/>
+  <widget actionPerformed="btnDellActionPerformed" icon="icons/actions/list-remove.png" name="btnDell" parent="toolBar" prefHeight="23px" prefWidth="29px" type="ButtonDesignInfo"/>
+  <layout type="MarginLayoutDesignInfo"/>
+</layout>

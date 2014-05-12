@@ -2,9 +2,6 @@
  * 
  * @author Dmitriy
  * @module
- * @param {type} aPath - путь к читаемому файлу
- * @param {type} aSeparator - разделитель
- * @returns {undefined}
  */
 function readTXT(aPath, aSeparator) {
     var self = this, model = this.model;
@@ -21,6 +18,7 @@ function readTXT(aPath, aSeparator) {
 
 
 
+
     initializeFile(fPath);
 
 
@@ -30,36 +28,41 @@ function readTXT(aPath, aSeparator) {
     }
 
     self.getData = function() {
-        var separator = fSeparator;
-        if (separator) {
-            var string = null;
-            var stringArray = [];
-            while (scanner.hasNext()) {
-                string = scanner.nextLine();
-                string = string.split(separator);
-                if (string.length > 1) {
-                    rowCount++;
-                    count++;
+        if (count < rowCount) {
+            return readFileArray[count];
+        }
+        else {
+            var separator = fSeparator;
+            if (separator) {
+                var string = null;
+                var stringArray = [];
+                while (scanner.hasNext()) {
+                    string = scanner.nextLine();
+                    string = string.split(separator);
                     if (string.length > 1) {
-                        if (selectedFields) {
-                            for (var i in selectedFields) {
-                                stringArray[i] = {cellNumber: i, cellData: string[i]};
+                        rowCount++;
+                        count++;
+                        if (string.length > 1) {
+                            if (selectedFields) {
+                                for (var i in selectedFields) {
+                                    stringArray[i] = {cellNumber: i, cellData: string[selectedFields[i]]};
+                                }
                             }
-                        }
-                        else {
-                            for (var i = 0; i < string.length; i++) {
-                                stringArray[i] = {cellNumber: i, cellData: string[i]};
+                            else {
+                                for (var i = 0; i < string.length; i++) {
+                                    stringArray[i] = {cellNumber: i, cellData: string[i]};
+                                }
                             }
+                            readFileArray.push(stringArray);
+                            return stringArray;
                         }
-                        readFileArray.push(stringArray);
-                        return stringArray;
+                        break;
                     }
-                    break;
                 }
             }
+            else
+                return null;
         }
-        else
-            return null;
     };
 
     self.getCursor = function() {
@@ -77,25 +80,24 @@ function readTXT(aPath, aSeparator) {
 
 
     self.getNext = function() {
-        if (readFileArray.length === 10) {
-            readFileArray.shift();
-            rowCount--;
-        }
         if (count < rowCount - 1) {
             count++;
-            return readFileArray[count];
+        }
+        if (count < self.getLength()) {
+            return true;
         }
         else
-            return self.getData();
+            return false;
 
     };
 
     self.getPrev = function() {
         if (count >= 1) {
             count--;
-
-            return readFileArray[count];
+            return true;
         }
+        else
+            return false;
     };
 
 
@@ -155,5 +157,9 @@ function readTXT(aPath, aSeparator) {
 
     self.setSelectedFields = function(aFields) {
         selectedFields = aFields;
+    };
+
+    self.beforeFirst = function() {
+        count = 0;
     };
 }

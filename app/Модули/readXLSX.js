@@ -21,8 +21,7 @@ function readXLSX(aPath) {
 
 
     initialize(fPath);
-    self.getData = getData();
-    self.getLast = getLast;
+
 
     function initialize(filePath) {
         fis = new java.io.FileInputStream(filePath);
@@ -30,17 +29,19 @@ function readXLSX(aPath) {
         wb = new org.apache.poi.xssf.usermodel.XSSFWorkbook(OPCPack);
     }
 
-    function getData() {
+    self.getData = function() {
         var readFileArray = [];
         sheet = wb.getSheetAt(0);
         row = sheet.getRow(rowCount);
         if (selectedFields) {
             for (var i in selectedFields) {
-                readFileArray[i] = {cellNumber: j, cellData: row.getCell(i)};
+                readFileArray[i] = {cellNumber: j, cellData: row.getCell(selectedFields[i])};
             }
         }
-        for (var j = 0; j < row.getLastCellNum(); j++) {
-            readFileArray[j] = {cellNumber: j, cellData: row.getCell(j)};
+        else {
+            for (var j = 0; j < row.getLastCellNum(); j++) {
+                readFileArray[j] = {cellNumber: j, cellData: row.getCell(j)};
+            }
         }
         return  readFileArray;
     }
@@ -73,19 +74,28 @@ function readXLSX(aPath) {
     self.getNext = function() {
         if (rowCount < self.getLength() - 1) {
             rowCount++;
-            return getData();
+            return true;
         }
+        else
+            return false;
     };
 
     self.getPrev = function() {
         if (rowCount > 0) {
             rowCount--;
-            return getData();
+            return true;
         }
+        else
+            return false;
     };
+
 
     self.setSelectedFields = function(aFields) {
         selectedFields = aFields;
+    };
+
+    self.beforeFirst = function() {
+        rowCount = -1;
     };
 }
 

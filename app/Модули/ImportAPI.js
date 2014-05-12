@@ -15,71 +15,37 @@ function ImportAPI(filePath, separator) {
 
     
     
-    self.openFile = initializeFile(fPath, fSeparator);
-
+   // self.openFile = initializeFile(fPath, fSeparator);
     
+    self.openFile = function () {
+        return initializeFile(fPath[count], fSeparator);
+    };
+    
+    self.nextFile = function () {
+        if(count < fPath.length - 1) {
+            count++;
+            return true;
+        }
+        else return false;
+    };
+    
+    self.getPrev = function () {
+        if(count >= 1) {
+            count--;
+            return true;
+        }
+        else return false;
+    };
     
     function initializeFile(filePath, separator) {
-        var apiArr = [];
-        for(var i = 0 ; i < filePath.length ; i++) {
-            var fPath = filePath[i];
-            var ext = fPath.substring(fPath.lastIndexOf(".") + 1);
+            var ext = filePath.substring(filePath.lastIndexOf(".") + 1);
             switch (ext) {
-                case 'txt': apiArr.push(new readTXT(fPath, separator));
+                case 'txt': return new readTXT(filePath, separator);
                     break;
-                case 'xls': apiArr.push(new readXLS(fPath));
+                case 'xls': return new readXLS(filePath);
                     break;
-                case 'xlsx': apiArr.push(new readXLSX(fPath));
+                case 'xlsx': return new readXLSX(filePath);
                     break;
             };
         }
-        return apiArr;
-    }
-    
-    /**
-     * функция определяет какой API для файла открыть
-     * @param {type} filePath - путь файла
-     * @param {type} separator - разделитель
-     * @returns {readTXT|readXLS|readXLSX} - возвращает API
-     */
-//    function initializeFile(filePath, separator) {
-//       var fPath = filePath[count];
-//        var ext = fPath.substring(fPath.lastIndexOf(".") + 1);
-//        alert(ext);
-//        switch (ext) {
-//            case 'txt':
-//                return new readTXT(filePath, separator);
-//                break;
-//            case 'xls':
-//                return new readXLS(filePath);
-//                break;
-//            case 'xlsx':
-//                return new readXLSX(filePath);
-//                break;
-//        };
-//    }
-    
-//    function initializeFile(filePath, separator) {
-//        var mas = [];
-//        for(var i = 0 ; i < filePath.length ; i++) {
-//             var fPath = filePath[i];
-//            var ext = fPath.substring(fPath.lastIndexOf(".") + 1);
-//          //  mas[i] =  new readXLS(fPath);
-//            mas.push(new readXLS(fPath));
-//        }   
-//        return mas;
-//        }
-//        
-//        self.openFile = function () {
-//            return initializeFile(filePath,separator);
-//        }
-//    
-
-    
- 
-    
-    
-   
-
-
 }
